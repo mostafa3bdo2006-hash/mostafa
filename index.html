@@ -1,725 +1,1232 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>أركان </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ZENITH | Wear the Summit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* ============================================= */
+        /* هذه الكومنتات خاصة بالمطور ولن تظهر للمستخدم  */
+        /* ============================================= */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
         }
-        
+        input, textarea, select {
+            user-select: text;
+            -webkit-user-select: text;
+        }
         body {
-            background: linear-gradient(145deg, #014815 0%, #024502 100%);
-            min-height: 100vh;
-            padding: 15px 12px 30px;
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.5;
         }
-        
-        :root {
-            --green-100: #e8f5e9;
-            --green-300: #81c784;
-            --green-500: #4caf50;
-            --green-700: #2e7d32;
-            --green-900: #1b5e20;
-            --white: #ffffff;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        .logo-container {
-            background: var(--white);
-            border-radius: 50px 50px 25px 25px;
-            padding: 20px 10px 10px;
-            border: 2px solid var(--green-300);
-            margin-bottom: 12px;
-        }
-        
-        .restaurant-name {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--green-900);
-        }
-        
-        .sub-title {
-            font-size: 1rem;
-            color: var(--green-700);
-            background: var(--green-100);
-            display: inline-block;
-            padding: 4px 20px;
-            border-radius: 40px;
-            font-weight: 700;
-        }
-        
-        .search-box {
-            background: var(--white);
-            border-radius: 50px;
-            padding: 14px 20px;
-            border: 2px solid var(--green-300);
-            width: 100%;
-            font-size: 1rem;
-            margin: 10px 0 15px;
-        }
-        
-        .category-nav {
-            display: flex;
-            overflow-x: auto;
-            gap: 8px;
-            padding: 5px 0 15px;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .category-btn {
-            background: var(--white);
-            border: 1.5px solid var(--green-300);
-            color: var(--green-900);
-            padding: 8px 14px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        
-        .category-btn.active {
-            background: var(--green-500);
-            color: white;
-            border-color: var(--green-700);
-        }
-        
-        .menu-section {
-            background: var(--white);
-            border-radius: 30px 30px 20px 20px;
-            padding: 18px 15px;
-            margin-bottom: 20px;
-            border-right: 5px solid var(--green-500);
-        }
-        
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--green-900);
-            border-bottom: 3px dashed var(--green-300);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .menu-item {
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5px;
-            border-bottom: 1px solid var(--green-100);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            background: #000000;
+            z-index: 100;
         }
-        
-        .item-name {
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 0.3rem;
+        }
+        .logo-area h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff, #c9a03d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo-slogan {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: #c9a03d;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            color: #c9a03d;
+        }
+        .nav-icons {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        .nav-icons i {
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+        .nav-icons i:hover {
+            color: #c9a03d;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #c9a03d;
+            color: black;
+            font-size: 0.6rem;
+            font-weight: bold;
+            padding: 0.1rem 0.3rem;
+            border-radius: 50%;
+            min-width: 16px;
+            text-align: center;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1;
+        }
+        .hero > * {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #c9a03d;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 1rem 0;
+            background: linear-gradient(135deg, #fff, #c9a03d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero .tagline {
+            font-size: 1rem;
+            color: #ddd;
+            margin-bottom: 2rem;
+        }
+        .btn-shop {
+            background: #c9a03d;
+            color: black;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 30px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-shop:hover {
+            background: #b89030;
+            transform: scale(1.02);
+        }
+        .products-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            border-left: 4px solid #c9a03d;
+            padding-left: 1rem;
+            color: #c9a03d;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: #111;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.25s;
+            border: 1px solid #222;
+            cursor: pointer;
+            position: relative;
+        }
+        .product-card.sold-out {
+            opacity: 0.6;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #c9a03d;
+        }
+        .sold-out-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #c9a03d;
+            color: black;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .product-img {
+            background: transparent;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .product-info {
+            padding: 1.2rem;
+        }
+        .product-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .product-price {
+            margin: 0.5rem 0;
             font-weight: 600;
-            color: #1d2b1d;
+        }
+        .original-price {
+            color: #888;
+            text-decoration: line-through;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+        .sale-price {
+            color: #c9a03d;
             font-size: 1rem;
         }
-        
-        .item-price {
-            font-weight: 800;
-            color: var(--green-900);
-            background: var(--green-100);
-            padding: 4px 14px;
-            border-radius: 40px;
-            white-space: nowrap;
+        .btn-add {
+            background: transparent;
+            border: 1px solid #c9a03d;
+            color: #c9a03d;
+            padding: 0.5rem;
+            border-radius: 30px;
+            width: 100%;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
         }
-        
-        .two-prices {
+        .btn-add:hover {
+            background: #c9a03d;
+            color: black;
+        }
+        .btn-add.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: #666;
+            color: #666;
+        }
+        .product-page {
+            display: none;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            gap: 3rem;
+        }
+        .product-page.active {
             display: flex;
-            gap: 3px;
-            background: var(--green-100);
-            border-radius: 40px;
-            padding: 2px;
+            flex-wrap: wrap;
         }
-        
-        .price-small {
-            background: white;
-            padding: 4px 10px;
-            border-radius: 30px;
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
         }
-        
-        .price-medium {
-            background: var(--green-300);
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-weight: 900;
-        }
-        
-        .extras-block {
-            background: var(--green-100);
+        .main-image {
+            width: 100%;
+            height: 450px;
+            background: transparent;
             border-radius: 20px;
-            padding: 12px;
-            margin-top: 15px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        .extras-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
-            gap: 8px;
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
-        
-        .extras-item {
-            background: white;
-            border-radius: 30px;
-            padding: 5px 12px;
+        .thumbnail-list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background: transparent;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid #333;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .thumbnail.active {
+            border-color: #c9a03d;
+        }
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        .product-details h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .price-section {
+            margin-bottom: 1rem;
+        }
+        .price-section .original-price {
+            font-size: 1.2rem;
+        }
+        .price-section .sale-price {
+            font-size: 1.8rem;
+        }
+        .description {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .size-section {
+            margin-bottom: 1.5rem;
+        }
+        .size-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
         }
-        
-        .footer-note {
+        .size-guide-btn {
+            background: transparent;
+            border: 1px solid #c9a03d;
+            color: #c9a03d;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+        .size-options {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .size-option {
+            width: 55px;
+            padding: 0.5rem;
             text-align: center;
-            color: var(--green-700);
-            background: var(--white);
-            padding: 15px;
-            border-radius: 50px;
-            border: 2px dotted var(--green-300);
-            margin-top: 25px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .size-option:hover:not(.sold-out-size) {
+            border-color: #c9a03d;
+            background: #c9a03d;
+            color: black;
+        }
+        .size-option.selected {
+            border-color: #c9a03d;
+            background: #c9a03d;
+            color: black;
+        }
+        .size-option.sold-out-size {
+            opacity: 0.5;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        .quantity-section {
+            margin-bottom: 1.5rem;
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #c9a03d;
+            color: black;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .add-to-cart-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .back-btn {
+            background: transparent;
+            border: 1px solid #c9a03d;
+            color: #c9a03d;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .size-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .size-modal-content {
+            background: #111;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            padding: 2rem;
+            border: 1px solid #c9a03d;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .size-modal-content h3 {
+            color: #c9a03d;
+            margin-bottom: 1rem;
+        }
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .size-table th, .size-table td {
+            border: 1px solid #333;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .size-table th {
+            background: #1a1a1a;
+            color: #c9a03d;
+        }
+        .size-guide-img {
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 12px;
+        }
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: #111;
+            z-index: 1000;
+            padding: 2rem;
+            border-left: 2px solid #c9a03d;
+            overflow-y: auto;
+        }
+        .cart-close {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #c9a03d;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #333;
+        }
+        .cart-total {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #c9a03d;
+            font-weight: bold;
+        }
+        .remove-item {
+            color: #ff4444;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .checkout-content {
+            background: #111;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            padding: 2rem;
+            border: 1px solid #c9a03d;
+        }
+        .checkout-content h3 {
+            color: #c9a03d;
+            margin-bottom: 1rem;
+        }
+        .checkout-content input, .checkout-content textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: #222;
+            border: 1px solid #c9a03d;
+            color: white;
+            border-radius: 10px;
+        }
+        .checkout-content textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        footer {
+            border-top: 1px solid #1a1a1a;
+            padding: 2rem;
+            text-align: center;
+            color: #777;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .product-page {
+                flex-direction: column;
+            }
+            .product-img {
+                height: 220px;
+            }
+            .main-image {
+                height: 300px;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="header">
-    <div class="logo-container">
-        <div class="restaurant-name">ARKAN</div>
-        <div class="sub-title">CAFE AND RESTAURANT</div>
+<div style="background:#222;color:#c9a03d;text-align:center;padding:0.7rem;font-size:0.75rem;">
+    ⚡ ZENITH | Wear the Summit
+</div>
+
+<nav class="navbar">
+    <div class="logo-area">
+        <!-- صورة شعار المتجر - غير الرابط أدناه -->
+        <img src="c:\Users\M\Downloads\ChatGPT Image Apr 16, 2026, 02_07_35 PM.png" alt="ZENITH" class="logo-img" style="width: 150px; height: 150px;">
+        <p class="logo-slogan">WEAR THE SUMMIT</p>
     </div>
-    
-    <input type="text" class="search-box" placeholder="🔍 ابحث في المنيو..." id="searchInput">
-    
-    <div class="category-nav" id="categoryNav">
-        <button class="category-btn active" onclick="filterMenu('all')">الكل</button>
-        <button class="category-btn" onclick="filterMenu('pizza')">بيتزا</button>
-        <button class="category-btn" onclick="filterMenu('meals')">وجبات</button>
-        <button class="category-btn" onclick="filterMenu('pasta')">باستا</button>
-        <button class="category-btn" onclick="filterMenu('sandwiches')">ساندوتشات</button>
-        <button class="category-btn" onclick="filterMenu('appetizers')">مقبلات</button>
-        <button class="category-btn" onclick="filterMenu('shakes')">ميلك شيك</button>
-        <button class="category-btn" onclick="filterMenu('juices')">عصائر</button>
-        <button class="category-btn" onclick="filterMenu('smoothie')">سموزي</button>
-        <button class="category-btn" onclick="filterMenu('zabado')">زبادو</button>
-        <button class="category-btn" onclick="filterMenu('hotdrinks')">مشروبات ساخنة</button>
-        <button class="category-btn" onclick="filterMenu('coffee')">قهوة</button>
-        <button class="category-btn" onclick="filterMenu('juicemix')">ميكس عصير</button>
-        <button class="category-btn" onclick="filterMenu('smoothiemix')">سموزي ميكس</button>
-        <button class="category-btn" onclick="filterMenu('icecoffee')">كافيه مثلج</button>
-        <button class="category-btn" onclick="filterMenu('milkshakemix')">ميكس ميلك شيك</button>
-        <button class="category-btn" onclick="filterMenu('icecream')">آيس كريم</button>
-        <button class="category-btn" onclick="filterMenu('soda')">صودا</button>
-        <button class="category-btn" onclick="filterMenu('tagin')">طواجن</button>
-        <button class="category-btn" onclick="filterMenu('waffle')">وافل</button>
-        <button class="category-btn" onclick="filterMenu('wafflebubbles')">وافل بابلز</button>
-        <button class="category-btn" onclick="filterMenu('desserts')">حلويات</button>
-        <button class="category-btn" onclick="filterMenu('fruitsalad')">فروت سلاد</button>
-        <button class="category-btn" onclick="filterMenu('softdrinks')">مشروبات غازية</button>
-        <button class="category-btn" onclick="filterMenu('extras')">إضافات</button>
-        <button class="category-btn" onclick="filterMenu('breakfast')">إفطار</button>
-        <button class="category-btn" onclick="filterMenu('breakfastsweet')">فطار حلو</button>
-        <button class="category-btn" onclick="filterMenu('new')">أصناف جديدة</button>
-        <button class="category-btn" onclick="filterMenu('newdessert')">حلويات جديدة</button>
-        <button class="category-btn" onclick="filterMenu('iftar')">وجبات إفطار</button>
-        <button class="category-btn" onclick="filterMenu('hamam')">حمام</button>
-        <button class="category-btn" onclick="filterMenu('farakh')">فراخ</button>
+    <ul class="nav-links">
+        <li><a class="nav-link" data-page="home">HOME</a></li>
+        <li><a class="nav-link" data-page="shop">SHOP</a></li>
+        <li><a class="nav-link" data-page="collections">COLLECTIONS</a></li>
+    </ul>
+    <div class="nav-icons">
+        <i class="fas fa-search" id="searchIcon"></i>
+        <i class="fas fa-user" id="userIcon"></i>
+        <i class="fas fa-shopping-bag" id="cartIcon">
+            <span class="cart-count" id="cartCount">0</span>
+        </i>
+    </div>
+</nav>
+
+<!-- صورة خلفية الهيرو - غير الرابط في style="background-image: url('...')" -->
+<section class="hero" id="heroSection" style="background-image: url('c:\Users\M\Downloads\WhatsApp Image 2026-04-17 at 6.34.51 PM.jpeg'); background-size: cover; background-position: center;">
+    <h2 id="heroSubText">RISE ABOVE. STAND OUT.</h2>
+    <h1 id="heroMainText">WEAR THE SUMMIT</h1>
+    <p class="tagline" id="heroTagText">ZENITH Premium Collection — Heavyweight, Luxury, Defined</p>
+    <button class="btn-shop" id="shopNowBtn">SHOP NOW →</button>
+</section>
+
+<section class="products-section" id="productsSection">
+    <div class="section-title">SUMMIT DROP</div>
+    <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<div class="product-page" id="productPage">
+    <div style="width:100%;">
+        <button class="back-btn" id="backToShopBtn"><i class="fas fa-arrow-left"></i> Back to Shop</button>
+    </div>
+    <div class="product-gallery" id="productGallery"></div>
+    <div class="product-details" id="productDetails"></div>
+</div>
+
+<footer>
+    <p>© 2025 ZENITH — Wear the Summit. Rise Above. Stand Out.</p>
+</footer>
+
+<div class="cart-modal" id="cartModal">
+    <span class="cart-close" onclick="closeCartModal()">&times;</span>
+    <h3><i class="fas fa-shopping-bag"></i> Your Cart</h3>
+    <div id="cartItems"></div>
+    <div class="cart-total" id="cartTotal">Total: EGP 0</div>
+    <button class="btn-shop" style="width:100%; margin-top:1rem;" onclick="openCheckoutModal()">Proceed to Checkout →</button>
+</div>
+
+<!-- صورة دليل المقاسات - غير الرابط في src أدناه -->
+<div class="size-modal" id="sizeModal">
+    <div class="size-modal-content">
+        <span class="close-modal" style="float:right; font-size:1.5rem; cursor:pointer;" onclick="closeSizeModal()">&times;</span>
+        <h3><i class="fas fa-ruler"></i> Size Guide</h3>
+        <table class="size-table">
+            <thead>
+                <tr><th>Size</th><th>Chest (cm)</th><th>Length (cm)</th><th>Shoulder (cm)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>S</td><td>91-96</td><td>68</td><td>45</td></tr>
+                <tr><td>M</td><td>96-101</td><td>70</td><td>47</td></tr>
+                <tr><td>L</td><td>101-106</td><td>72</td><td>49</td></tr>
+                <tr><td>XL</td><td>106-111</td><td>74</td><td>51</td></tr>
+                <tr><td>XXL</td><td>111-116</td><td>76</td><td>53</td></tr>
+            </tbody>
+        </table>
+        <img src="https://placehold.co/400x300/333/c9a03d?text=Size+Guide+Image" alt="Size Guide" class="size-guide-img">
+        <p style="font-size:0.7rem; color:#888; margin-top:1rem;">Measurements are in centimeters.</p>
     </div>
 </div>
 
-<div id="menuContainer">
-
-<!-- البيتزا -->
-<div class="menu-section" data-category="pizza">
-    <div class="section-title">🍕 البيتزا <span>صغير / وسط</span></div>
-    <div class="menu-item"><span class="item-name">مارجريتا</span> <span class="item-price two-prices"><span class="price-small">80</span>/<span class="price-medium">105</span></span></div>
-    <div class="menu-item"><span class="item-name">خضروات</span> <span class="item-price two-prices"><span class="price-small">85</span>/<span class="price-medium">115</span></span></div>
-    <div class="menu-item"><span class="item-name">هوت دوج</span> <span class="item-price two-prices"><span class="price-small">100</span>/<span class="price-medium">120</span></span></div>
-    <div class="menu-item"><span class="item-name">مشروم</span> <span class="item-price two-prices"><span class="price-small">85</span>/<span class="price-medium">120</span></span></div>
-    <div class="menu-item"><span class="item-name">دجاج</span> <span class="item-price two-prices"><span class="price-small">105</span>/<span class="price-medium">140</span></span></div>
-    <div class="menu-item"><span class="item-name">دجاج باربيكيو</span> <span class="item-price two-prices"><span class="price-small">115</span>/<span class="price-medium">150</span></span></div>
-    <div class="menu-item"><span class="item-name">بيبيروني</span> <span class="item-price two-prices"><span class="price-small">105</span>/<span class="price-medium">145</span></span></div>
-    <div class="menu-item"><span class="item-name">سجق شرقي</span> <span class="item-price two-prices"><span class="price-small">120</span>/<span class="price-medium">160</span></span></div>
-    <div class="menu-item"><span class="item-name">دجاج رانش</span> <span class="item-price two-prices"><span class="price-small">115</span>/<span class="price-medium">150</span></span></div>
-    <div class="menu-item"><span class="item-name">مكس جبن</span> <span class="item-price two-prices"><span class="price-small">95</span>/<span class="price-medium">125</span></span></div>
-    <div class="menu-item"><span class="item-name">بيتزا أركان (دجاج+هوت دوج+مكس جبن)</span> <span class="item-price two-prices"><span class="price-small">130</span>/<span class="price-medium">170</span></span></div>
-    <div class="menu-item"><span class="item-name">بيتزا زنجر</span> <span class="item-price two-prices"><span class="price-small">115</span>/<span class="price-medium">145</span></span></div>
-    <div class="menu-item"><span class="item-name">بيتزا ساندوتش دجاج</span> <span class="item-price">110 (وسط)</span></div>
-    <div class="menu-item"><span class="item-name">بيتزا ساندوتش هوت دوج</span> <span class="item-price">100 (وسط)</span></div>
-    
-    <div class="extras-block">
-        <div class="extras-title">➕ إضافات البيتزا</div>
-        <div class="extras-grid">
-            <div class="extras-item"><span>إضافة جبن</span> <span>35/45</span></div>
-            <div class="extras-item"><span>إضافة دجاج</span> <span>40/50</span></div>
-            <div class="extras-item"><span>إضافة مشروم</span> <span>30/40</span></div>
-            <div class="extras-item"><span>إضافة خضروات</span> <span>25/35</span></div>
-            <div class="extras-item"><span>حشو أطراف</span> <span>40</span></div>
-            <div class="extras-item"><span>إضافة صوص</span> <span>15</span></div>
-        </div>
+<div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-content">
+        <span class="close-modal" style="float:right; font-size:1.5rem; cursor:pointer;" onclick="closeCheckoutModal()">&times;</span>
+        <h3><i class="fas fa-truck"></i> Order Details</h3>
+        <input type="text" id="customerName" placeholder="Full Name *">
+        <input type="tel" id="customerPhone" placeholder="Phone Number *">
+        <input type="text" id="customerEmail" placeholder="Email (optional)">
+        <textarea id="customerAddress" placeholder="Full Address (Street, Building, Apartment, City, Governorate) *"></textarea>
+        <textarea id="orderNotes" placeholder="Notes (special instructions, gate number, etc.)"></textarea>
+        <button class="btn-shop" style="width:100%; margin-top:1rem;" onclick="submitOrder()">Confirm Order →</button>
     </div>
-</div>
-
-<!-- الوجبات -->
-<div class="menu-section" data-category="meals">
-    <div class="section-title">🥘 الوجبات <span>مع مكرونة ريد صوص وبطاطس</span></div>
-    <div class="menu-item"><span class="item-name">بانيه</span> <span class="item-price">145</span></div>
-    <div class="menu-item"><span class="item-name">كرسبي</span> <span class="item-price">150</span></div>
-    <div class="menu-item"><span class="item-name">زنجر حار</span> <span class="item-price">150</span></div>
-    <div class="menu-item"><span class="item-name">فاهيتا</span> <span class="item-price">150</span></div>
-    <div class="menu-item"><span class="item-name">كوردن بلو</span> <span class="item-price">175</span></div>
-    <div class="menu-item"><span class="item-name">تشيكن بيكاتا</span> <span class="item-price">165</span></div>
-    <div class="menu-item"><span class="item-name">تشيكن باربيكيو</span> <span class="item-price">155</span></div>
-</div>
-
-<!-- الطاسات -->
-<div class="menu-section" data-category="meals">
-    <div class="section-title">🥣 الطاسات</div>
-    <div class="menu-item"><span class="item-name">طاسه فاهيتا</span> <span class="item-price">115</span></div>
-    <div class="menu-item"><span class="item-name">طاسه هوت دوج</span> <span class="item-price">110</span></div>
-    <div class="menu-item"><span class="item-name">طاسه بيبيروني</span> <span class="item-price">110</span></div>
-    <div class="menu-item"><span class="item-name">طاسه زنجر</span> <span class="item-price">120</span></div>
-    <div class="menu-item"><span class="item-name">طاسه مكس جبن</span> <span class="item-price">110</span></div>
-    <div class="menu-item"><span class="item-name">طاسه سجق شرقي</span> <span class="item-price">130</span></div>
-</div>
-
-<!-- الباستا -->
-<div class="menu-section" data-category="pasta">
-    <div class="section-title">🍝 الباستا</div>
-    <div class="menu-item"><span class="item-name">الفريدو</span> <span class="item-price">105</span></div>
-    <div class="menu-item"><span class="item-name">الفريدو زنجر</span> <span class="item-price">120</span></div>
-    <div class="menu-item"><span class="item-name">نجرسكو</span> <span class="item-price">120</span></div>
-    <div class="menu-item"><span class="item-name">ارابيانا</span> <span class="item-price">45</span></div>
-    <div class="menu-item"><span class="item-name">باستا سجق شرقي</span> <span class="item-price">125</span></div>
-    <div class="menu-item"><span class="item-name">باستا أركان</span> <span class="item-price">130</span></div>
-</div>
-
-<!-- الساندوتشات -->
-<div class="menu-section" data-category="sandwiches">
-    <div class="section-title">🥪 الساندوتشات <span>فينو/صاج</span></div>
-    <div class="menu-item"><span class="item-name">بانيه</span> <span class="item-price two-prices"><span class="price-small">95</span>/<span class="price-medium">100</span></span></div>
-    <div class="menu-item"><span class="item-name">كرسبي</span> <span class="item-price two-prices"><span class="price-small">95</span>/<span class="price-medium">100</span></span></div>
-    <div class="menu-item"><span class="item-name">فاهيتا</span> <span class="item-price two-prices"><span class="price-small">90</span>/<span class="price-medium">95</span></span></div>
-    <div class="menu-item"><span class="item-name">زنجر حار</span> <span class="item-price two-prices"><span class="price-small">90</span>/<span class="price-medium">95</span></span></div>
-</div>
-
-<!-- المقبلات -->
-<div class="menu-section" data-category="appetizers">
-    <div class="section-title">🧆 المقبلات</div>
-    <div class="menu-item"><span class="item-name">تومية</span> <span class="item-price">20</span></div>
-    <div class="menu-item"><span class="item-name">كلوسلو</span> <span class="item-price">20</span></div>
-    <div class="menu-item"><span class="item-name">بطاطس مكس جبن</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">باكيت بطاطس</span> <span class="item-price">30</span></div>
-    <div class="menu-item"><span class="item-name">بطاطس شيدر</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">طاجن بطاطس اسبيشيال</span> <span class="item-price">55</span></div>
-</div>
-
-<!-- ميلك شيك -->
-<div class="menu-section" data-category="shakes">
-    <div class="section-title">🥛 ميلك شيك</div>
-    <div class="menu-item"><span class="item-name">ميلك فانيليا</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">ميلك شوكولاته</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">ميلك كراميل</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">ميلك فراولة</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">ميلك فسدق</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">ميلك فسدق وايت</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">ميلك موز</span> <span class="item-price">85</span></div>
-    <div class="menu-item"><span class="item-name">ميلك مانجو</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">ميلك نسكافيه</span> <span class="item-price">85</span></div>
-    <div class="menu-item"><span class="item-name">ميلك نوتيلا</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">ميلك لوتس</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">ميلك كيت كات</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">ميلك كيندر</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">ميلك بلو بيري</span> <span class="item-price">80</span></div>
-</div>
-
-<!-- العصائر -->
-<div class="menu-section" data-category="juices">
-    <div class="section-title">🧃 العصائر</div>
-    <div class="menu-item"><span class="item-name">مانجو</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">جوافة</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">فراولة</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">كيوي</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">ليمون</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">ليمون نعناع</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">بطيخ</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">برتقال</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">بلح بلبن</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">موز بلبن</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">أفوكادو</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">أفوكادو ميكس</span> <span class="item-price">100</span></div>
-</div>
-
-<!-- سموزي -->
-<div class="menu-section" data-category="smoothie">
-    <div class="section-title">🥤 سموزي</div>
-    <div class="menu-item"><span class="item-name">اسموزي مانجو</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">اسموزي فراولة</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">اسموزي بطيخ</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">اسموزي ليمون نعناع</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">اسموزي بلوبيري</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">اسموزي جوز هند</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">اسموزي باشون فروت</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">اسموزي بيتش</span> <span class="item-price">65</span></div>
-</div>
-
-<!-- زبادو -->
-<div class="menu-section" data-category="zabado">
-    <div class="section-title">🥛 زبادو</div>
-    <div class="menu-item"><span class="item-name">زبادي عسل</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">زبادو فراولة</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">زبادو توت</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">زبادو خوخ</span> <span class="item-price">75</span></div>
-</div>
-
-<!-- المشروبات الساخنة -->
-<div class="menu-section" data-category="hotdrinks">
-    <div class="section-title">☕ مشروبات ساخنة</div>
-    <div class="menu-item"><span class="item-name">شاي</span> <span class="item-price">25</span></div>
-    <div class="menu-item"><span class="item-name">شاي انجليزي</span> <span class="item-price">35</span></div>
-    <div class="menu-item"><span class="item-name">شاي بلبن</span> <span class="item-price">45</span></div>
-    <div class="menu-item"><span class="item-name">شاي أخضر</span> <span class="item-price">25</span></div>
-    <div class="menu-item"><span class="item-name">نعناع</span> <span class="item-price">25</span></div>
-    <div class="menu-item"><span class="item-name">ينسون</span> <span class="item-price">25</span></div>
-    <div class="menu-item"><span class="item-name">كركديه</span> <span class="item-price">25</span></div>
-    <div class="menu-item"><span class="item-name">قرفة بلبن</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">هوت سيدر</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">هوت ليمون</span> <span class="item-price">35</span></div>
-    <div class="menu-item"><span class="item-name">ميكس أعشاب</span> <span class="item-price">35</span></div>
-    <div class="menu-item"><span class="item-name">سحلب مكسرات</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">سحلب فروت</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">سحلب نوتيلا</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">سحلب أوريو</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">هوت شوكليت كلاسيك</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">هوت شوكليت نوتيلا</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">هوت شوكليت وايت</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">هوت وايت شوكليت</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">هوت شوكليت أوريو</span> <span class="item-price">65</span></div>
-</div>
-
-<!-- القهوة -->
-<div class="menu-section" data-category="coffee">
-    <div class="section-title">☕ القهوة</div>
-    <div class="menu-item"><span class="item-name">قهوة تركي</span> <span class="item-price">35</span></div>
-    <div class="menu-item"><span class="item-name">قهوة تركي دبل</span> <span class="item-price">49</span></div>
-    <div class="menu-item"><span class="item-name">قهوة فرنساوي</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">قهوة بندق</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">قهوة شوكولاته</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">قهوة كراميل</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">قهوة نوتيلا</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">قهوة أركان</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">نسكافيه بلاك</span> <span class="item-price">40</span></div>
-    <div class="menu-item"><span class="item-name">نسكافيه بلبن</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">نسكافيه نوتيلا</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">اسبريسو سنجل</span> <span class="item-price">45</span></div>
-    <div class="menu-item"><span class="item-name">اسبريسو دبل</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">اسبريسو ميكاتو</span> <span class="item-price">48</span></div>
-    <div class="menu-item"><span class="item-name">اسبريسو ميكاتو كراميل</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">لاتيه</span> <span class="item-price">58</span></div>
-    <div class="menu-item"><span class="item-name">لاتيه فليفر</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">كابتشينو</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">كابتشينو فليفر</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">فلات وايت</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">موكا (دارك - وايت)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">امريكانو كوفي</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">ميكانو دبل</span> <span class="item-price">55</span></div>
-</div>
-
-<!-- ميكس عصير -->
-<div class="menu-section" data-category="juicemix">
-    <div class="section-title">🧃 ميكس عصير</div>
-    <div class="menu-item"><span class="item-name">فلوريدا (مانجو + فراولة + جوافة)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">كريزي كيوي (مانجو + فراولة + كيوي)</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">ميكس أركان (مانجو + كيوي + مكسرات + عسل + ايس كريم)</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">مكس أركان</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">بنانا بيري (موز + بلو بيري + فراولة + توت)</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">تروبيكال (مانجو + موز + اناناس)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">ميكس بطيخ نعناع</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">ميكس برتقال عنب</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">ميكس مانجو كيوي</span> <span class="item-price">70</span></div>
-</div>
-
-<!-- سموزي ميكس -->
-<div class="menu-section" data-category="smoothiemix">
-    <div class="section-title">🥤 سموزي ميكس</div>
-    <div class="menu-item"><span class="item-name">تاتوه (مانجو + فراولة)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">بيتش (مانجو + خوخ)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">مكس بيري (مانجو + بلوبيري)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">كاريزما (مانجو + كيوي)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">بينا كولادا (اناناس + جوز هند)</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">باشون هاوس (باشون فروت + مانجو)</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">بلو أركان (بلو كراسو + ليمون + نعناع + كيوي)</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">براديس (مانجو + خوخ + باشون فروت)</span> <span class="item-price">70</span></div>
-</div>
-
-<!-- كافيه مثلج -->
-<div class="menu-section" data-category="icecoffee">
-    <div class="section-title">🧊 كافيه مثلج</div>
-    <div class="menu-item"><span class="item-name">ايس شوكليت</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">ايس لاتيه</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">ايس كوفي كلاسيك</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">ايس تومي (كراميل - شوكليت - فانيليا - بندق - لوتس)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">فرابتشينو كلاسيك</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">فرابتشينو (كراميل - شوكليت - فانيليا - بندق - كوكيز)</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">فرابتشينو أوريو</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">فرابتشينو نوتيلا</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">فرابتشينو لوتس</span> <span class="item-price">80</span></div>
-</div>
-
-<!-- ميكس ميلك شيك -->
-<div class="menu-section" data-category="milkshakemix">
-    <div class="section-title">🥛 ميكس ميلك شيك</div>
-    <div class="menu-item"><span class="item-name">بوريو فانيليا</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">بوريو شوكليت</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">بوريو كراميل</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">بوريو مانجو</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">سماك وايت فسدق</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">أوريو فانيليا</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">أوريو شوكليت</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">أوريو كراميل</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">أوريو مانجو</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">كوفي كراميل</span> <span class="item-price">70</span></div>
-</div>
-
-<!-- آيس كريم -->
-<div class="menu-section" data-category="icecream">
-    <div class="section-title">🍦 آيس كريم</div>
-    <div class="menu-item"><span class="item-name">2 بوله</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">3 بوله</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">4 بوله</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">ايس كريم اكسترا نوتيلا</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">ايس كريم اكسترا أوريو</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">ايس كريم اكسترا فروت</span> <span class="item-price">75</span></div>
-</div>
-
-<!-- الصودا -->
-<div class="menu-section" data-category="soda">
-    <div class="section-title">🥤 الصودا</div>
-    <div class="menu-item"><span class="item-name">شيري كولا / موهيتو</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">بيري ريدبول</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">جرين ماونتن</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">ايس كريم صودا</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">بلو سكاي (ليمون + بلوبيري + صودا)</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">باشون صودا (باشون + صودا + ليمون)</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">بيري صودا (بلوبيري + صودا + ليمون)</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">إيطاليانو صودا (سيرب + صودة + فواكه)</span> <span class="item-price">65</span></div>
-    <div class="menu-item"><span class="item-name">اسبريسو صودا</span> <span class="item-price">70</span></div>
-</div>
-
-<!-- طواجن -->
-<div class="menu-section" data-category="tagin">
-    <div class="section-title">🏺 طواجن</div>
-    <div class="menu-item"><span class="item-name">طاجن نوتيلا</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">طاجن لوتس</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">طاجن أوريو</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">طاجن وافل</span> <span class="item-price">75</span></div>
-</div>
-
-<!-- وافل بابلز -->
-<div class="menu-section" data-category="wafflebubbles">
-    <div class="section-title">🫧 وافل بابلز</div>
-    <div class="menu-item"><span class="item-name">بابلز شوكليت</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">بابلز وايت شوكليت</span> <span class="item-price">85</span></div>
-    <div class="menu-item"><span class="item-name">بابلز لوتس</span> <span class="item-price">80</span></div>
-</div>
-
-<!-- الوافل -->
-<div class="menu-section" data-category="waffle">
-    <div class="section-title">🧇 الوافل</div>
-    <div class="menu-item"><span class="item-name">وافل كراميل</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">وافل فراولة</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">وافل توت</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">وافل شوكليت</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">وافل وايت شوكليت</span> <span class="item-price">85</span></div>
-    <div class="menu-item"><span class="item-name">وافل لوتس</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">وافل هاف آند هاف</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">وافل رانش</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">وافل أركان (فواكه + نوتيلا + آيس كريم)</span> <span class="item-price">110</span></div>
-</div>
-
-<!-- الحلويات -->
-<div class="menu-section" data-category="desserts">
-    <div class="section-title">🍰 الحلويات</div>
-    <div class="menu-item"><span class="item-name">تشيز كيك</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">تشيز كيك فليفر (كراميل - توت - فراولة)</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">تشيز كيك شوكليت (نوتيلا - وايت شوكليت - لوتس)</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">شوكليت كيك</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">شوكليت كيك نوتيلا</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">براونيز آيس</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">مولتن كيك</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">مولتن كيك شوكليت (نوتيلا - وايت شوكليت - لوتس)</span> <span class="item-price">110</span></div>
-</div>
-
-<!-- فروت سلاد -->
-<div class="menu-section" data-category="fruitsalad">
-    <div class="section-title">🥗 فروت سلاد</div>
-    <div class="menu-item"><span class="item-name">فروت سلاد كاب</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">فروت سلاد أركان</span> <span class="item-price">80</span></div>
-</div>
-
-<!-- المشروبات الغازية -->
-<div class="menu-section" data-category="softdrinks">
-    <div class="section-title">🥤 مشروبات غازية</div>
-    <div class="menu-item"><span class="item-name">مياه صغيرة</span> <span class="item-price">10</span></div>
-    <div class="menu-item"><span class="item-name">كانز بيبسي</span> <span class="item-price">30</span></div>
-    <div class="menu-item"><span class="item-name">كانز سفن</span> <span class="item-price">30</span></div>
-    <div class="menu-item"><span class="item-name">كانز فيروز</span> <span class="item-price">35</span></div>
-    <div class="menu-item"><span class="item-name">كانز شويبس</span> <span class="item-price">35</span></div>
-    <div class="menu-item"><span class="item-name">كانز بريل</span> <span class="item-price">35</span></div>
-    <div class="menu-item"><span class="item-name">كانز ريد بول</span> <span class="item-price">60</span></div>
-    <div class="menu-item"><span class="item-name">تويست / دبل دير</span> <span class="item-price">30</span></div>
-    <div class="menu-item"><span class="item-name">اسبريسو سبايس</span> <span class="item-price">30</span></div>
-</div>
-
-<!-- الإضافات -->
-<div class="menu-section" data-category="extras">
-    <div class="section-title">➕ الإضافات</div>
-    <div class="menu-item"><span class="item-name">إضافة عسل</span> <span class="item-price">20</span></div>
-    <div class="menu-item"><span class="item-name">إضافة لبن</span> <span class="item-price">25</span></div>
-    <div class="menu-item"><span class="item-name">إضافة آيس كريم</span> <span class="item-price">30</span></div>
-    <div class="menu-item"><span class="item-name">إضافة فروت</span> <span class="item-price">30</span></div>
-    <div class="menu-item"><span class="item-name">إضافة شوكليت</span> <span class="item-price">30</span></div>
-    <div class="menu-item"><span class="item-name">إضافة مكسرات</span> <span class="item-price">30</span></div>
-    <div class="menu-item"><span class="item-name">إضافة فليفر</span> <span class="item-price">30</span></div>
-</div>
-
-<!-- قائمة فطار - فطار فلاحي ومصري -->
-<div class="menu-section" data-category="breakfast">
-    <div class="section-title">🌅 فطار</div>
-    <div class="menu-item"><span class="item-name">فطار فلاحي (فطيرة مشلتتة + عسل أسود + جبنة)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">فطار مصري (2 ساندوتش 1 بيف مدخن + 1 شيدر مدخن)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">فطار مصري (1 فول + 4 قرص طعمية + 1 بطاطس + 1 بيضة مسلوقة + عيش)</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">فطار مصري (2 ساندوتش جبن اسبيشيال مع الشيدر والبيف المدخن والخضار)</span> <span class="item-price">70</span></div>
-</div>
-
-<!-- فطار حلو -->
-<div class="menu-section" data-category="breakfastsweet">
-    <div class="section-title">🥐 فطار حلو</div>
-    <div class="menu-item"><span class="item-name">كرواسون كيندر</span> <span class="item-price">70</span></div>
-    <div class="menu-item"><span class="item-name">كرواسون لوتس</span> <span class="item-price">55</span></div>
-    <div class="menu-item"><span class="item-name">كرواسون نوتيلا</span> <span class="item-price">50</span></div>
-    <div class="menu-item"><span class="item-name">قطع دوناتس</span> <span class="item-price">50</span></div>
-</div>
-
-<!-- أصناف جديدة -->
-<div class="menu-section" data-category="new">
-    <div class="section-title">🆕 أصناف جديدة <span>تقدم مع بطاطس</span></div>
-    <div class="menu-item"><span class="item-name">الاورجينال تشيكن (قطعة 200 جرام، خس، خيار، شيدر، مايونيز)</span> <span class="item-price">95</span></div>
-    <div class="menu-item"><span class="item-name">تشيكن تشيز (قطعة 200 جرام، خس، خيار، 2 ستيك موزيلا وشيدر، شريحة سموك بيف، صوص شيدر)</span> <span class="item-price">115</span></div>
-    <div class="menu-item"><span class="item-name">تشيكن تركي (قطعة 200 جرام، شريحة تركي مدخن، صوص تيستي، خس، خيار، مايونيز)</span> <span class="item-price">105</span></div>
-    <div class="menu-item"><span class="item-name">تشيكن رانش (قطعة 200 جرام، خس، خيار، صوص رانش)</span> <span class="item-price">100</span></div>
-    <div class="menu-item"><span class="item-name">باستا جمبري</span> <span class="item-price">120</span></div>
-    <div class="menu-item"><span class="item-name">باستا ماك اند تشيز</span> <span class="item-price">110</span></div>
-</div>
-
-<!-- حلويات جديدة -->
-<div class="menu-section" data-category="newdessert">
-    <div class="section-title">🍨 حلويات جديدة</div>
-    <div class="menu-item"><span class="item-name">شجره مانجا بالأيس (كبير)</span> <span class="item-price">120</span></div>
-    <div class="menu-item"><span class="item-name">شجره مانجا بالأيس (صغير)</span> <span class="item-price">80</span></div>
-    <div class="menu-item"><span class="item-name">شجره مانجا صن داي (كبير)</span> <span class="item-price">110</span></div>
-    <div class="menu-item"><span class="item-name">شجره مانجا صن داي (صغير)</span> <span class="item-price">75</span></div>
-    <div class="menu-item"><span class="item-name">فتة وافل</span> <span class="item-price">100</span></div>
-    <div class="menu-item"><span class="item-name">كريب سوشي</span> <span class="item-price">90</span></div>
-    <div class="menu-item"><span class="item-name">وافل شيش</span> <span class="item-price">95</span></div>
-    <div class="menu-item"><span class="item-name">ايس كريم صن داي فليفر</span> <span class="item-price">50</span></div>
-</div>
-
-<!-- وجبات إفطار أركان -->
-<div class="menu-section" data-category="iftar">
-    <div class="section-title">🌙 وجبات إفطار <span>تقدم مع عيش + أرز + سلطة + طحينة</span></div>
-    <div class="menu-item"><span class="item-name">وجبة تكا (نص فرخة تكا مخلية)</span> <span class="item-price">150</span></div>
-    <div class="menu-item"><span class="item-name">ميكس مشوي (ربع مشوي + ثمن كفتة)</span> <span class="item-price">140</span></div>
-    <div class="menu-item"><span class="item-name">ميكس أركان (ربع شيش + ثمن كفتة + 2 قطعة استربس)</span> <span class="item-price">200</span></div>
-    <div class="menu-item"><span class="item-name">وجبة شيش (ربع شيش + ثمن كفتة)</span> <span class="item-price">150</span></div>
-</div>
-
-<!-- الحمام -->
-<div class="menu-section" data-category="hamam">
-    <div class="section-title">🕊️ الحمام</div>
-    <div class="menu-item"><span class="item-name">فرد حمام</span> <span class="item-price">150</span></div>
-    <div class="menu-item"><span class="item-name">جوز حمام</span> <span class="item-price">280</span></div>
-</div>
-
-<!-- الفراخ -->
-<div class="menu-section" data-category="farakh">
-    <div class="section-title">🍗 الفراخ</div>
-    <div class="menu-item"><span class="item-name">فرخة تكا</span> <span class="item-price">300</span></div>
-</div>
-
-</div> <!-- نهاية menuContainer -->
-
-<div class="footer-note">
-    <p>📍 مع تحيات مطعم وكافيه أركان | نتمنى لكم وجبة شهية</p>
 </div>
 
 <script>
-// تصفية المنيو حسب القسم
-function filterMenu(category) {
-    let sections = document.querySelectorAll('.menu-section');
-    let buttons = document.querySelectorAll('.category-btn');
-    
-    // إزالة active من كل الأزرار
-    buttons.forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // إضافة active للزر المضغوط
-    event.target.classList.add('active');
-    
-    // عرض الأقسام حسب الفئة
-    sections.forEach(section => {
-        if (category === 'all') {
-            section.style.display = 'block';
+// بيانات المنتجات
+// كل منتج له: name(الاسم), originalPrice(السعر الأصلي), salePrice(سعر البيع)
+// mainImg(الصورة الرئيسية), images(صور المعرض), desc(الوصف)
+// sizesAvailable(المقاسات المتاحة), isSoldOut(نفاذ المنتج بالكامل)
+
+const products = [
+    { 
+        id: 1, 
+        name: "PEAK JACKET", 
+        originalPrice: 3200,
+        salePrice: 2199,
+        mainImg: "https://placehold.co/600x800/333/c9a03d?text=PEAK+JACKET+1",
+        images: [
+            "c:\Users\M\Downloads\WhatsApp Image 2026-04-17 at 4.03.27 PM.jpeg",
+            "https://placehold.co/600x800/444/c9a03d?text=PEAK+JACKET+2",
+            "https://placehold.co/600x800/555/c9a03d?text=PEAK+JACKET+3"
+        ],
+        desc: "Premium peak jacket, heavy weight, perfect for cold weather.",
+        sizesAvailable: { S: true, M: true, L: true, XL: false, XXL: true },
+        isSoldOut: false
+    },
+    { 
+        id: 2, 
+        name: "SUMMIT HOODIE", 
+        originalPrice: 2600,
+        salePrice: 1899,
+        mainImg: "https://placehold.co/600x800/333/c9a03d?text=SUMMIT+HOODIE+1",
+        images: [
+            "https://placehold.co/600x800/333/c9a03d?text=SUMMIT+HOODIE+1",
+            "https://placehold.co/600x800/444/c9a03d?text=SUMMIT+HOODIE+2",
+            "https://placehold.co/600x800/555/c9a03d?text=SUMMIT+HOODIE+3"
+        ],
+        desc: "Oversized summit hoodie, premium cotton blend, feels luxurious.",
+        sizesAvailable: { S: true, M: true, L: true, XL: true, XXL: false },
+        isSoldOut: false
+    },
+    { 
+        id: 3, 
+        name: "ZENITH CAP", 
+        originalPrice: 899,
+        salePrice: 599,
+        mainImg: "https://placehold.co/600x800/333/c9a03d?text=ZENITH+CAP+1",
+        images: [
+            "https://placehold.co/600x800/333/c9a03d?text=ZENITH+CAP+1",
+            "https://placehold.co/600x800/444/c9a03d?text=ZENITH+CAP+2",
+            "https://placehold.co/600x800/555/c9a03d?text=ZENITH+CAP+3"
+        ],
+        desc: "Structured zenith cap, embroidered logo, premium quality.",
+        sizesAvailable: { S: true, M: true, L: false, XL: false, XXL: false },
+        isSoldOut: false
+    },
+    { 
+        id: 4, 
+        name: "ASCENT TEE", 
+        originalPrice: 1200,
+        salePrice: 799,
+        mainImg: "https://placehold.co/600x800/333/c9a03d?text=ASCENT+TEE+1",
+        images: [
+            "https://placehold.co/600x800/333/c9a03d?text=ASCENT+TEE+1",
+            "https://placehold.co/600x800/444/c9a03d?text=ASCENT+TEE+2",
+            "https://placehold.co/600x800/555/c9a03d?text=ASCENT+TEE+3"
+        ],
+        desc: "Comfortable ascent tee, perfect for everyday wear.",
+        sizesAvailable: { S: false, M: true, L: true, XL: true, XXL: true },
+        isSoldOut: false
+    }
+];
+
+let cart = [];
+let currentUser = localStorage.getItem('zenith_user') || null;
+let currentProduct = null;
+let selectedSize = null;
+let quantity = 1;
+
+function getDiscountPercent(original, sale) {
+    if (original <= sale) return null;
+    return Math.round(((original - sale) / original) * 100);
+}
+
+function loadCart() {
+    const savedCart = localStorage.getItem('zenith_cart');
+    if (savedCart) cart = JSON.parse(savedCart);
+    updateCartUI();
+}
+
+function saveCart() {
+    localStorage.setItem('zenith_cart', JSON.stringify(cart));
+    updateCartUI();
+}
+
+function addToCartFromPage() {
+    if (!selectedSize) {
+        alert('Please select a size');
+        return;
+    }
+    if (currentProduct && currentProduct.sizesAvailable[selectedSize] === false) {
+        alert('Sorry, this size is sold out!');
+        return;
+    }
+    if (currentProduct) {
+        const existing = cart.find(item => item.id === currentProduct.id && item.size === selectedSize);
+        if (existing) {
+            existing.quantity += quantity;
         } else {
-            if (section.getAttribute('data-category') === category) {
-                section.style.display = 'block';
-            } else {
-                section.style.display = 'none';
-            }
+            cart.push({ 
+                id: currentProduct.id,
+                name: currentProduct.name, 
+                quantity: quantity, 
+                size: selectedSize,
+                price: currentProduct.salePrice,
+                originalPrice: currentProduct.originalPrice,
+                img: currentProduct.mainImg
+            });
         }
+        saveCart();
+        showToast(`${currentProduct.name} (${selectedSize}) added to cart!`);
+        closeProductPage();
+    }
+}
+
+function removeFromCart(productId, size) {
+    cart = cart.filter(item => !(item.id === productId && item.size === size));
+    saveCart();
+}
+
+function updateQuantityInCart(productId, size, change) {
+    const item = cart.find(item => item.id === productId && item.size === size);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(productId, size);
+        } else {
+            saveCart();
+        }
+    }
+}
+
+function updateCartUI() {
+    const cartItemsDiv = document.getElementById('cartItems');
+    const cartCountSpan = document.getElementById('cartCount');
+    const cartTotalDiv = document.getElementById('cartTotal');
+    
+    let total = 0;
+    let itemCount = 0;
+    
+    if (cartItemsDiv) {
+        if (cart.length === 0) {
+            cartItemsDiv.innerHTML = '<p style="color:#666; text-align:center;">Your cart is empty</p>';
+        } else {
+            cartItemsDiv.innerHTML = cart.map(item => {
+                const discount = getDiscountPercent(item.originalPrice, item.price);
+                return `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>Size: ${item.size}</small><br>
+                            ${discount ? `<small style="color:#c9a03d;">${discount}% OFF</small><br>` : ''}
+                            <small>EGP ${item.price.toLocaleString()}</small>
+                        </div>
+                        <div>
+                            <button onclick="updateQuantityInCart(${item.id}, '${item.size}', -1)" style="background:#333; border:none; color:white; padding:0.2rem 0.5rem; border-radius:5px; cursor:pointer;">-</button>
+                            <span style="margin:0 0.5rem;">${item.quantity}</span>
+                            <button onclick="updateQuantityInCart(${item.id}, '${item.size}', 1)" style="background:#333; border:none; color:white; padding:0.2rem 0.5rem; border-radius:5px; cursor:pointer;">+</button>
+                            <span class="remove-item" onclick="removeFromCart(${item.id}, '${item.size}')"><i class="fas fa-trash"></i></span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartTotalDiv.innerHTML = `Total: EGP ${total.toLocaleString()}`;
+    }
+    
+    if (cartCountSpan) {
+        cartCountSpan.textContent = itemCount;
+        cartCountSpan.style.display = itemCount > 0 ? 'block' : 'none';
+    }
+}
+
+function displayProducts() {
+    const grid = document.getElementById('productsGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = products.map(product => {
+        const discount = getDiscountPercent(product.originalPrice, product.salePrice);
+        const hasDiscount = discount !== null;
+        const isSoldOut = product.isSoldOut;
+        
+        return `
+            <div class="product-card ${isSoldOut ? 'sold-out' : ''}" onclick="${!isSoldOut ? `openProductPage(${product.id})` : ''}">
+                ${isSoldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
+                ${hasDiscount && !isSoldOut ? `<div class="discount-badge">-${discount}%</div>` : ''}
+                <div class="product-img">
+                    <img src="${product.mainImg}" alt="${product.name}">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">${product.name}</div>
+                    <div class="product-price">
+                        ${hasDiscount ? `<span class="original-price">EGP ${product.originalPrice.toLocaleString()}</span>` : ''}
+                        <span class="sale-price">EGP ${product.salePrice.toLocaleString()}</span>
+                    </div>
+                    <button class="btn-add ${isSoldOut ? 'disabled' : ''}" onclick="event.stopPropagation(); ${!isSoldOut ? `addToCartSimple(${product.id})` : ''}">
+                        ${isSoldOut ? 'SOLD OUT' : 'ADD TO CART'}
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function addToCartSimple(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product && !product.isSoldOut) {
+        const availableSize = Object.keys(product.sizesAvailable).find(size => product.sizesAvailable[size] === true);
+        if (availableSize) {
+            const existing = cart.find(item => item.id === productId && item.size === availableSize);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ 
+                    id: product.id,
+                    name: product.name, 
+                    quantity: 1, 
+                    size: availableSize,
+                    price: product.salePrice,
+                    originalPrice: product.originalPrice,
+                    img: product.mainImg
+                });
+            }
+            saveCart();
+            showToast(`${product.name} (${availableSize}) added to cart!`);
+        } else {
+            showToast('Sorry, this product is sold out!');
+        }
+    }
+}
+
+function openProductPage(productId) {
+    currentProduct = products.find(p => p.id === productId);
+    selectedSize = null;
+    quantity = 1;
+    
+    if (currentProduct.isSoldOut) {
+        showToast('This product is sold out!');
+        return;
+    }
+    
+    document.getElementById('productsSection').style.display = 'none';
+    document.getElementById('productPage').classList.add('active');
+    
+    const discount = getDiscountPercent(currentProduct.originalPrice, currentProduct.salePrice);
+    const hasDiscount = discount !== null;
+    
+    const galleryHtml = `
+        <div class="main-image" id="mainImage">
+            <img src="${currentProduct.mainImg}" alt="${currentProduct.name}">
+        </div>
+        <div class="thumbnail-list" id="thumbnailList">
+            ${currentProduct.images.map((img, index) => `
+                <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this)">
+                    <img src="${img}" alt="Thumbnail ${index + 1}">
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    const sizeOptionsHtml = ['S', 'M', 'L', 'XL', 'XXL'].map(size => {
+        const isAvailable = currentProduct.sizesAvailable[size] === true;
+        const isSelected = selectedSize === size;
+        return `
+            <div class="size-option ${isSelected ? 'selected' : ''} ${!isAvailable ? 'sold-out-size' : ''}" 
+                 data-size="${size}" 
+                 onclick="${isAvailable ? `selectSize('${size}')` : ''}">
+                ${size} ${!isAvailable ? '(Sold)' : ''}
+            </div>
+        `;
+    }).join('');
+    
+    const detailsHtml = `
+        <h1>${currentProduct.name}</h1>
+        <div class="price-section">
+            ${hasDiscount ? `<span class="original-price">EGP ${currentProduct.originalPrice.toLocaleString()}</span>` : ''}
+            <span class="sale-price">EGP ${currentProduct.salePrice.toLocaleString()}</span>
+            ${hasDiscount ? `<span style="color:#4caf50; margin-left:0.5rem;">-${discount}% OFF</span>` : ''}
+        </div>
+        <div class="description">${currentProduct.desc}</div>
+        <div class="size-section">
+            <div class="size-header">
+                <span>Select Size</span>
+                <button class="size-guide-btn" onclick="openSizeModal()"><i class="fas fa-chart-simple"></i> Size Guide</button>
+            </div>
+            <div class="size-options" id="sizeOptions">
+                ${sizeOptionsHtml}
+            </div>
+        </div>
+        <div class="quantity-section">
+            <div class="quantity-selector">
+                <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="10" readonly>
+                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+            </div>
+        </div>
+        <button class="add-to-cart-btn" id="addToCartPageBtn">ADD TO CART - EGP ${currentProduct.salePrice.toLocaleString()}</button>
+    `;
+    
+    document.getElementById('productGallery').innerHTML = galleryHtml;
+    document.getElementById('productDetails').innerHTML = detailsHtml;
+    
+    document.getElementById('addToCartPageBtn')?.addEventListener('click', addToCartFromPage);
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function changeMainImage(src, element) {
+    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+    element.classList.add('active');
+    document.querySelector('#mainImage img').src = src;
+}
+
+function selectSize(size) {
+    selectedSize = size;
+    document.querySelectorAll('.size-option').forEach(opt => {
+        opt.classList.remove('selected');
+        if (opt.getAttribute('data-size') === size) opt.classList.add('selected');
     });
 }
 
-// البحث في المنيو
-document.getElementById('searchInput').addEventListener('keyup', function() {
-    let searchText = this.value.toLowerCase();
-    let sections = document.querySelectorAll('.menu-section');
+function changeQuantity(delta) {
+    const input = document.getElementById('quantityInput');
+    let newVal = quantity + delta;
+    if (newVal >= 1 && newVal <= 10) {
+        quantity = newVal;
+        input.value = quantity;
+    }
+}
+
+function closeProductPage() {
+    document.getElementById('heroSection').style.display = 'block';
+    document.getElementById('productsSection').style.display = 'block';
+    document.getElementById('productPage').classList.remove('active');
+    currentProduct = null;
+    selectedSize = null;
+    quantity = 1;
+}
+
+function openSizeModal() {
+    document.getElementById('sizeModal').style.display = 'flex';
+}
+
+function closeSizeModal() {
+    document.getElementById('sizeModal').style.display = 'none';
+}
+
+function openCartModal() {
+    document.getElementById('cartModal').style.display = 'block';
+    updateCartUI();
+}
+
+function closeCartModal() {
+    document.getElementById('cartModal').style.display = 'none';
+}
+
+function openCheckoutModal() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    document.getElementById('checkoutModal').style.display = 'flex';
+}
+
+function closeCheckoutModal() {
+    document.getElementById('checkoutModal').style.display = 'none';
+}
+
+function submitOrder() {
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const address = document.getElementById('customerAddress').value.trim();
     
-    sections.forEach(section => {
-        let items = section.querySelectorAll('.menu-item');
-        let hasVisibleItem = false;
-        
-        items.forEach(item => {
-            let itemName = item.querySelector('.item-name').textContent.toLowerCase();
-            if (itemName.includes(searchText)) {
-                item.style.display = 'flex';
-                hasVisibleItem = true;
-            } else {
-                item.style.display = 'none';
-            }
-        });
-        
-        // عرض القسم إذا كان فيه عناصر ظاهرة
-        if (hasVisibleItem) {
-            section.style.display = 'block';
+    if (!name) {
+        alert('Please enter your full name');
+        return;
+    }
+    if (!phone) {
+        alert('Please enter your phone number');
+        return;
+    }
+    if (!address) {
+        alert('Please enter your full address');
+        return;
+    }
+    
+    const email = document.getElementById('customerEmail').value.trim();
+    const notes = document.getElementById('orderNotes').value.trim();
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    const orderDetails = {
+        customer: { name, phone, email, address, notes },
+        items: cart.map(item => ({
+            name: item.name,
+            size: item.size,
+            quantity: item.quantity,
+            price: item.price
+        })),
+        total: total,
+        date: new Date().toLocaleString()
+    };
+    
+    console.log('New Order:', orderDetails);
+    
+    const savedOrders = localStorage.getItem('zenith_orders');
+    const orders = savedOrders ? JSON.parse(savedOrders) : [];
+    orders.push(orderDetails);
+    localStorage.setItem('zenith_orders', JSON.stringify(orders));
+    
+    alert(`✅ Order Confirmed!\n\nThank you ${name}!\nTotal: EGP ${total.toLocaleString()}\nWe will contact you within 24 hours.`);
+    
+    cart = [];
+    saveCart();
+    closeCheckoutModal();
+    closeCartModal();
+    
+    document.getElementById('customerName').value = '';
+    document.getElementById('customerPhone').value = '';
+    document.getElementById('customerEmail').value = '';
+    document.getElementById('customerAddress').value = '';
+    document.getElementById('orderNotes').value = '';
+}
+
+function openSearchModal() {
+    const searchTerm = prompt('Search for products:', '');
+    if (searchTerm && searchTerm.trim()) {
+        const filtered = products.filter(p => 
+            p.name.toLowerCase().includes(searchTerm.toLowerCase()) && !p.isSoldOut
+        );
+        if (filtered.length > 0) {
+            showToast(`Found ${filtered.length} product(s)`);
+            openProductPage(filtered[0].id);
         } else {
-            section.style.display = 'none';
+            showToast('No products found');
+        }
+    }
+}
+
+function openLoginModal() {
+    const name = prompt('Enter your name to continue:');
+    if (name && name.trim()) {
+        currentUser = name.trim();
+        localStorage.setItem('zenith_user', currentUser);
+        updateUserUI();
+        showToast(`Welcome ${currentUser}!`);
+    }
+}
+
+function logout() {
+    currentUser = null;
+    localStorage.removeItem('zenith_user');
+    updateUserUI();
+    showToast('Logged out');
+}
+
+function updateUserUI() {
+    const userIcon = document.getElementById('userIcon');
+    if (currentUser) {
+        userIcon.innerHTML = `<i class="fas fa-user-check"></i><span style="color:#c9a03d; margin-left:0.3rem; font-size:0.7rem;">${currentUser.split(' ')[0]}</span>`;
+        userIcon.onclick = () => { if (confirm(`Logout ${currentUser}?`)) logout(); };
+    } else {
+        userIcon.innerHTML = `<i class="fas fa-user"></i>`;
+        userIcon.onclick = () => openLoginModal();
+    }
+}
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#c9a03d;color:black;padding:0.5rem 1rem;border-radius:30px;font-size:0.8rem;z-index:1001;animation:fadeOut 2s ease forwards';
+    toast.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+}
+
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        const page = e.target.getAttribute('data-page');
+        if (page === 'home') {
+            document.getElementById('heroSection').style.display = 'block';
+            document.getElementById('productsSection').style.display = 'block';
+            document.getElementById('productPage').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (page === 'shop') {
+            document.getElementById('heroSection').style.display = 'none';
+            document.getElementById('productsSection').style.display = 'block';
+            document.getElementById('productPage').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (page === 'collections') {
+            document.getElementById('heroSection').style.display = 'none';
+            document.getElementById('productsSection').style.display = 'block';
+            document.getElementById('productPage').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
 });
 
-// تفعيل زر الكل عند تحميل الصفحة
-window.onload = function() {
-    filterMenu('all');
-}
-</script>
+document.getElementById('cartIcon')?.addEventListener('click', openCartModal);
+document.getElementById('searchIcon')?.addEventListener('click', openSearchModal);
+document.getElementById('shopNowBtn')?.addEventListener('click', () => {
+    document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+});
+document.getElementById('backToShopBtn')?.addEventListener('click', closeProductPage);
 
+window.onclick = (e) => {
+    if (e.target === document.getElementById('cartModal')) closeCartModal();
+    if (e.target === document.getElementById('sizeModal')) closeSizeModal();
+    if (e.target === document.getElementById('checkoutModal')) closeCheckoutModal();
+};
+
+loadCart();
+displayProducts();
+updateUserUI();
+
+const style = document.createElement('style');
+style.textContent = `@keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }`;
+document.head.appendChild(style);
+</script>
 </body>
 </html>
