@@ -404,6 +404,9 @@
             opacity: 0.5;
             cursor: not-allowed;
             text-decoration: line-through;
+            background: #330000;
+            border-color: #ff4444;
+            color: #ff8888;
         }
         .quantity-section {
             margin-bottom: 1.5rem;
@@ -446,6 +449,8 @@
         .add-to-cart-btn.disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            background: #444;
+            color: #999;
         }
         .back-btn {
             background: transparent;
@@ -576,27 +581,6 @@
             resize: vertical;
             min-height: 80px;
         }
-        /* زر تحميل الطلبات */
-        .download-orders-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #c9a03d;
-            color: black;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-        }
-        .download-orders-btn:hover {
-            background: #b89030;
-        }
         footer {
             border-top: 1px solid #1a1a1a;
             padding: 2rem;
@@ -621,12 +605,6 @@
             .main-image {
                 height: 300px;
             }
-            .download-orders-btn {
-                bottom: 10px;
-                left: 10px;
-                padding: 0.4rem 0.8rem;
-                font-size: 0.7rem;
-            }
         }
     </style>
 </head>
@@ -638,7 +616,6 @@
 
 <nav class="navbar">
     <div class="logo-area">
-        <!-- صورة شعار المتجر - غير الرابط أدناه -->
         <img src="https://placehold.co/400x400/c9a03d/black?text=Z" alt="ZENITH" class="logo-img" id="logoImg">
         <h1>ZENITH</h1>
         <p class="logo-slogan">WEAR THE SUMMIT</p>
@@ -657,7 +634,6 @@
     </div>
 </nav>
 
-<!-- صورة خلفية الهيرو - غير الرابط في style -->
 <section class="hero" id="heroSection" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/c9a03d?text=ZENITH+BG'); background-size: cover; background-position: center;">
     <h2 id="heroSubText">RISE ABOVE. STAND OUT.</h2>
     <h1 id="heroMainText">WEAR THE SUMMIT</h1>
@@ -682,11 +658,6 @@
     <p>© 2025 ZENITH — Wear the Summit. Rise Above. Stand Out.</p>
 </footer>
 
-<!-- زر تحميل الطلبات -->
-<button class="download-orders-btn" id="downloadOrdersBtn" onclick="downloadOrders()">
-    <i class="fas fa-download"></i> تحميل الطلبات (JSON)
-</button>
-
 <div class="cart-modal" id="cartModal">
     <span class="cart-close" onclick="closeCartModal()">&times;</span>
     <h3><i class="fas fa-shopping-bag"></i> Your Cart</h3>
@@ -695,7 +666,6 @@
     <button class="btn-shop" style="width:100%; margin-top:1rem;" onclick="openCheckoutModal()">Proceed to Checkout →</button>
 </div>
 
-<!-- صورة دليل المقاسات -->
 <div class="size-modal" id="sizeModal">
     <div class="size-modal-content">
         <span class="close-modal" style="float:right; font-size:1.5rem; cursor:pointer;" onclick="closeSizeModal()">&times;</span>
@@ -726,12 +696,14 @@
         <input type="text" id="customerEmail" placeholder="Email (optional)">
         <textarea id="customerAddress" placeholder="Full Address (Street, Building, Apartment, City, Governorate) *"></textarea>
         <textarea id="orderNotes" placeholder="Notes (special instructions, gate number, etc.)"></textarea>
-        <button class="btn-shop" style="width:100%; margin-top:1rem;" onclick="submitOrder()">Confirm Order →</button>
+        <button class="btn-shop" id="sendOrderBtn" style="width:100%; margin-top:1rem;">Confirm Order →</button>
     </div>
 </div>
 
 <script>
-// بيانات المنتجات
+// ============================================================ */
+/*                     بيانات المنتجات                         */
+/* ============================================================ */
 const products = [
     { 
         id: 1, 
@@ -801,27 +773,8 @@ let currentProduct = null;
 let selectedSize = null;
 let quantity = 1;
 
-// دالة تحميل الطلبات كملف JSON
-function downloadOrders() {
-    const orders = localStorage.getItem('zenith_orders');
-    if (!orders || orders === '[]') {
-        alert('⚠️ لا توجد طلبات لتحميلها حالياً');
-        return;
-    }
-    
-    const ordersData = JSON.parse(orders);
-    const date = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
-    const fileName = `zenith_orders_${date}.json`;
-    
-    const blob = new Blob([JSON.stringify(ordersData, null, 2)], {type: 'application/json'});
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
-    URL.revokeObjectURL(link.href);
-    
-    alert(`✅ تم تحميل ${ordersData.length} طلب(ات) بنجاح!\n📁 اسم الملف: ${fileName}`);
-}
+// إيميل الاستلام - غير الإيميل هنا إلى إيميلك
+const STORE_EMAIL = "mostafa3bdo2006@gmail.com";
 
 function getDiscountPercent(original, sale) {
     if (original <= sale) return null;
@@ -953,7 +906,7 @@ function displayProducts() {
                         <span class="sale-price">EGP ${product.salePrice.toLocaleString()}</span>
                     </div>
                     <button class="btn-add ${isSoldOut ? 'disabled' : ''}" onclick="event.stopPropagation(); ${!isSoldOut ? `addToCartSimple(${product.id})` : ''}">
-                          ${isSoldOut ? 'SOLD OUT' : 'ADD TO CART'}
+                        ${isSoldOut ? 'SOLD OUT' : 'ADD TO CART'}
                     </button>
                 </div>
             </div>
@@ -1025,7 +978,7 @@ function openProductPage(productId) {
             <div class="size-option ${isSelected ? 'selected' : ''} ${!isAvailable ? 'sold-out-size' : ''}" 
                  data-size="${size}" 
                  onclick="${isAvailable ? `selectSize('${size}')` : ''}">
-                ${size} ${!isAvailable ? '(Sold)' : ''}
+                ${size} ${!isAvailable ? '(Sold Out)' : ''}
             </div>
         `;
     }).join('');
@@ -1126,29 +1079,51 @@ function closeCheckoutModal() {
     document.getElementById('checkoutModal').style.display = 'none';
 }
 
-function submitOrder() {
+function sendOrderViaEmail() {
     const name = document.getElementById('customerName').value.trim();
     const phone = document.getElementById('customerPhone').value.trim();
     const address = document.getElementById('customerAddress').value.trim();
     
-    if (!name) {
-        alert('Please enter your full name');
-        return;
-    }
-    if (!phone) {
-        alert('Please enter your phone number');
-        return;
-    }
-    if (!address) {
-        alert('Please enter your full address');
-        return;
+    if (!name || !phone || !address) {
+        alert('Please fill all required fields');
+        return false;
     }
     
     const email = document.getElementById('customerEmail').value.trim();
     const notes = document.getElementById('orderNotes').value.trim();
-    
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     
+    // تنسيق المنتجات
+    let productsText = '';
+    cart.forEach((item, index) => {
+        productsText += `${index + 1}. ${item.name} - مقاس: ${item.size} - الكمية: ${item.quantity} - السعر: EGP ${item.price}\n`;
+    });
+    
+    // تنسيق نص الإيميل
+    const subject = `🛍️ طلب جديد من ${name}`;
+    const body = `
+┌─────────────────────────────────────────────┐
+│                 طلب جديد                    │
+└─────────────────────────────────────────────┘
+
+👤 بيانات العميل:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+الاسم: ${name}
+الهاتف: ${phone}
+البريد: ${email || 'غير مدخل'}
+العنوان: ${address}
+ملاحظات: ${notes || 'لا توجد'}
+
+📦 تفاصيل الطلب:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${productsText}
+💰 الإجمالي: EGP ${total.toLocaleString()}
+
+📅 تاريخ الطلب: ${new Date().toLocaleString('ar-EG')}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    `;
+    
+    // حفظ الطلب في localStorage
     const orderDetails = {
         customer: { name, phone, email, address, notes },
         items: cart.map(item => ({
@@ -1158,28 +1133,39 @@ function submitOrder() {
             price: item.price
         })),
         total: total,
-        date: new Date().toLocaleString()
+        date: new Date().toLocaleString('ar-EG')
     };
-    
-    console.log('New Order:', orderDetails);
     
     const savedOrders = localStorage.getItem('zenith_orders');
     const orders = savedOrders ? JSON.parse(savedOrders) : [];
     orders.push(orderDetails);
     localStorage.setItem('zenith_orders', JSON.stringify(orders));
     
-    alert(`✅ Order Confirmed!\n\nThank you ${name}!\nTotal: EGP ${total.toLocaleString()}\nWe will contact you within 24 hours.`);
+    // فتح بريد العميل مع البيانات جاهزة
+    const mailtoLink = `mailto:${STORE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoLink, '_blank');
     
-    cart = [];
-    saveCart();
-    closeCheckoutModal();
-    closeCartModal();
-    
-    document.getElementById('customerName').value = '';
-    document.getElementById('customerPhone').value = '';
-    document.getElementById('customerEmail').value = '';
-    document.getElementById('customerAddress').value = '';
-    document.getElementById('orderNotes').value = '';
+    return true;
+}
+
+function submitOrder() {
+    const success = sendOrderViaEmail();
+    if (success) {
+        alert(`✅ Order Confirmed!\n\nسيتم فتح بريدك الإلكتروني لإرسال الطلب.\nالرجاء الضغط على إرسال.`);
+        
+        // تنظيف السلة
+        cart = [];
+        saveCart();
+        closeCheckoutModal();
+        closeCartModal();
+        
+        // تنظيف النموذج
+        document.getElementById('customerName').value = '';
+        document.getElementById('customerPhone').value = '';
+        document.getElementById('customerEmail').value = '';
+        document.getElementById('customerAddress').value = '';
+        document.getElementById('orderNotes').value = '';
+    }
 }
 
 function openSearchModal() {
@@ -1261,6 +1247,7 @@ document.getElementById('shopNowBtn')?.addEventListener('click', () => {
     document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
 });
 document.getElementById('backToShopBtn')?.addEventListener('click', closeProductPage);
+document.getElementById('sendOrderBtn')?.addEventListener('click', submitOrder);
 
 window.onclick = (e) => {
     if (e.target === document.getElementById('cartModal')) closeCartModal();
