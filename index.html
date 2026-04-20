@@ -9,6 +9,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -17,7 +18,7 @@
       min-height: 100vh;
     }
 
-    .app {
+    .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 1.5rem 2rem;
@@ -26,7 +27,7 @@
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       border-bottom: 1px solid #e5e5e5;
       padding-bottom: 1rem;
       margin-bottom: 2rem;
@@ -34,8 +35,14 @@
     }
 
     .logo h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
+      margin: 0;
+      padding: 0;
+    }
+
+    .logo img {
+      width: 120px;
+      height: auto;
+      display: block;
       cursor: pointer;
     }
 
@@ -45,9 +52,88 @@
       background: #f3f3f3;
       padding: 0.3rem 1rem;
       border-radius: 30px;
+      cursor: pointer;
     }
 
-    /* زر الرجوع */
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-card {
+      background: #fafafa;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #eee;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .product-card.sold-out {
+      opacity: 0.6;
+    }
+
+    .product-card.sold-out::after {
+      content: "SOLD OUT";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #000;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-price {
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: white;
+      border-top: 1px solid #eee;
+      color: #1a1a1a;
+    }
+
+    .product-view {
+      display: none;
+    }
+
     .back-home-btn {
       display: inline-flex;
       align-items: center;
@@ -68,82 +154,6 @@
       background: #f0f0f0;
     }
 
-    .home-view {
-      display: block;
-    }
-
-    .home-view.hidden {
-      display: none;
-    }
-
-    .main-title {
-      font-size: 3rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .bag-center {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .product-card {
-      background: #fafafa;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #eee;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .product-image {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background-color: #eaeaea;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .product-price-badge {
-      padding: 0.5rem;
-      text-align: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      background: white;
-      border-top: 1px solid #eee;
-      color: #1a1a1a;
-    }
-
-    .product-view {
-      display: none;
-    }
-
-    .product-view.active {
-      display: block;
-    }
-
     .product-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -161,12 +171,6 @@
       border: 1px solid #efefef;
       background-size: cover;
       background-position: center;
-    }
-
-    .arabic-graphic {
-      font-size: 3rem;
-      font-weight: 800;
-      text-align: center;
     }
 
     .brand-sub {
@@ -193,12 +197,20 @@
     .stock-status {
       font-size: 0.7rem;
       font-weight: 600;
-      color: #2c7a2f;
-      background: #e9f5e9;
       display: inline-block;
       padding: 0.2rem 0.8rem;
       border-radius: 20px;
       margin-bottom: 0.75rem;
+    }
+
+    .stock-status.in-stock {
+      color: #2c7a2f;
+      background: #e9f5e9;
+    }
+
+    .stock-status.sold-out {
+      color: #c62828;
+      background: #ffebee;
     }
 
     .price {
@@ -229,12 +241,21 @@
       border-radius: 40px;
       cursor: pointer;
       font-family: inherit;
+      transition: all 0.2s;
     }
 
     .size-btn.selected {
       background: #000;
       color: white;
       border-color: #000;
+    }
+
+    .size-btn.sold-out {
+      background: #f0f0f0;
+      color: #999;
+      border-color: #ddd;
+      cursor: not-allowed;
+      text-decoration: line-through;
     }
 
     .add-to-bag {
@@ -247,6 +268,11 @@
       width: 100%;
       cursor: pointer;
       margin: 0.5rem 0;
+    }
+
+    .add-to-bag.disabled {
+      background: #ccc;
+      cursor: not-allowed;
     }
 
     .unlock-message {
@@ -291,56 +317,116 @@
       margin: 0.5rem 0;
     }
 
-    .also-like {
-      margin-top: 2.5rem;
-      border-top: 1px solid #ebebeb;
-      padding-top: 1.5rem;
+    .cart-view {
+      display: none;
     }
 
-    .also-like h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .product-row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0.8rem;
-    }
-
-    .like-item {
-      cursor: pointer;
+    .cart-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
       text-align: center;
     }
 
-    .like-image {
-      background: #f3f3f3;
-      border-radius: 16px;
-      aspect-ratio: 1 / 1;
-      display: flex;
+    .cart-items {
+      margin-bottom: 2rem;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 0.5fr;
+      gap: 1rem;
       align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      color: #666;
-      margin-bottom: 0.5rem;
-      overflow: hidden;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
     }
 
-    .like-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .like-title {
-      font-size: 0.7rem;
-      font-weight: 500;
-    }
-
-    .like-price {
-      font-size: 0.7rem;
+    .cart-header {
       font-weight: 700;
+      color: #555;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.2s;
+    }
+
+    .remove-btn:hover {
+      color: #e53935;
+    }
+
+    .cart-total {
+      text-align: right;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid #eee;
+    }
+
+    .checkout-form {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #f9f9f9;
+      border-radius: 24px;
+    }
+
+    .checkout-form h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      color: #333;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: white;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #000;
+    }
+
+    .checkout-submit {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      border-radius: 48px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 3rem;
+      color: #888;
     }
 
     .footer {
@@ -360,10 +446,13 @@
       margin-top: 0.5rem;
     }
 
-    .footer-links a {
-      text-decoration: none;
-      color: #555;
+    .footer-links span {
       cursor: pointer;
+      color: #555;
+    }
+
+    .footer-links span:hover {
+      text-decoration: underline;
     }
 
     .social-footer {
@@ -399,7 +488,7 @@
     }
 
     @media (max-width: 900px) {
-      .app {
+      .container {
         padding: 1rem;
       }
       .products-grid {
@@ -410,18 +499,16 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
-      .product-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
+      .logo img {
+        width: 90px;
       }
-      .main-title {
-        font-size: 2.2rem;
-      }
-      .arabic-graphic {
-        font-size: 2.2rem;
-      }
-      .product-title {
-        font-size: 1.3rem;
+    }
+
+    @media (max-width: 700px) {
+      .cart-item {
+        grid-template-columns: 1fr 0.8fr 0.8fr 0.3fr;
+        gap: 0.5rem;
+        font-size: 0.8rem;
       }
     }
 
@@ -440,47 +527,34 @@
       .size-btn {
         padding: 0.4rem 1rem;
       }
+      .logo img {
+        width: 80px;
+      }
     }
   </style>
 </head>
 <body>
-<div class="app">
+<div class="container">
 
   <div class="header">
     <div class="logo">
-      <h1 onclick="showHome()">براسرب</h1>
+      <h1 onclick="navigateTo('home')" style="margin:0; padding:0;">
+        <img src="c:\Users\M\Pictures\ICONS\Artboard 9.png">
+      </h1>
     </div>
-    <div class="bag">🛒 Bag 0</div>
+    <div class="nav-links">
+      <div class="bag" onclick="navigateTo('cart')">🛒 Bag <span id="bagCount">0</span></div>
+    </div>
   </div>
 
   <!-- ========== الصفحة الرئيسية ========== -->
   <div id="homeView" class="home-view">
-    <div class="main-title">براسرب</div>
-    <div class="bag-center"><div class="bag">🛒 Bag 0</div></div>
     <div class="products-grid" id="productsGrid"></div>
-    <div class="footer">
-      <div>© 2026, Barraserb.</div>
-      <div class="footer-links">
-        <a href="#" onclick="showHome(); return false;">الرئيسية</a>
-        <a href="#">About</a>
-        <a href="#">Returns & Refunds</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-    <div class="social-footer">
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-1.28.06-2.16.26-2.92.56-.8.31-1.48.73-2.15 1.4-.67.67-1.09 1.35-1.4 2.15-.3.76-.5 1.64-.56 2.92C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.16.56 2.92.31.8.73 1.48 1.4 2.15.67.67 1.35 1.09 2.15 1.4.76.3 1.64.5 2.92.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.16-.26 2.92-.56.8-.31 1.48-.73 2.15-1.4.67-.67 1.09-1.35 1.4-2.15.3-.76.5-1.64.56-2.92.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.16-.56-2.92-.31-.8-.73-1.48-1.4-2.15-.67-.67-1.35-1.09-2.15-1.4-.76-.3-1.64-.5-2.92-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84c-3.4 0-6.16 2.76-6.16 6.16s2.76 6.16 6.16 6.16 6.16-2.76 6.16-6.16-2.76-6.16-6.16-6.16zm0 10.16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
-      </div>
-    </div>
   </div>
 
   <!-- ========== صفحة المنتج ========== -->
   <div id="productView" class="product-view">
-    <!-- زر الرجوع -->
-    <button class="back-home-btn" onclick="showHome()">← الرئيسية</button>
-
+    <button class="back-home-btn" onclick="navigateTo('home')">← الرئيسية</button>
     <div class="product-grid">
       <div class="product-img-box" id="productImgBox">
         <div class="arabic-graphic">أُوْجِيهَ</div>
@@ -489,11 +563,11 @@
         <div class="brand-sub">BRSRB</div>
         <div class="product-title" id="productTitle">"الاولوية القصوى" TEE - BLACK</div>
         <div class="arabic-title">أُوْجِيهَ</div>
-        <div class="stock-status">✓ IN STOCK</div>
+        <div class="stock-status in-stock" id="stockStatus">✓ IN STOCK</div>
         <div class="price" id="productPrice">960 EGP</div>
 
         <div class="size-label">SIZE</div>
-        <div class="size-buttons">
+        <div class="size-buttons" id="sizeButtons">
           <button class="size-btn" data-size="M">M</button>
           <button class="size-btn" data-size="L">L</button>
           <button class="size-btn" data-size="XL">XL</button>
@@ -517,132 +591,293 @@
         <div class="shipping-note">🚚 Shipping: Orders Are Delivered Within 1-3 Working Days.</div>
       </div>
     </div>
+  </div>
 
-    <div class="also-like">
-      <h3>YOU MAY ALSO LIKE</h3>
-      <div class="product-row" id="alsoLikeGrid"></div>
-    </div>
+  <!-- ========== صفحة السلة ========== -->
+  <div id="cartView" class="cart-view">
+    <div class="cart-title">سلة المشتريات</div>
+    <div id="cartContainer"></div>
+  </div>
 
-    <div class="footer">
-      <div>© 2026, Barraserb.</div>
-      <div class="footer-links">
-        <a href="#" onclick="showHome(); return false;">الرئيسية</a>
-        <a href="#">About</a>
-        <a href="#">Returns & Refunds</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Contact</a>
-      </div>
+  <!-- ========== الفوتر المشترك ========== -->
+  <div class="footer">
+    <div>© 2026, Barraserb.</div>
+    <div class="footer-links">
+      <span onclick="navigateTo('home')">الرئيسية</span>
+      <span onclick="navigateTo('cart')">السلة</span>
+      <span>About</span>
+      <span>Returns & Refunds</span>
+      <span>Privacy Policy</span>
+      <span>Contact</span>
     </div>
-    <div class="social-footer">
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-1.28.06-2.16.26-2.92.56-.8.31-1.48.73-2.15 1.4-.67.67-1.09 1.35-1.4 2.15-.3.76-.5 1.64-.56 2.92C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.16.56 2.92.31.8.73 1.48 1.4 2.15.67.67 1.35 1.09 2.15 1.4.76.3 1.64.5 2.92.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.16-.26 2.92-.56.8-.31 1.48-.73 2.15-1.4.67-.67 1.09-1.35 1.4-2.15.3-.76.5-1.64.56-2.92.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.16-.56-2.92-.31-.8-.73-1.48-1.4-2.15-.67-.67-1.35-1.09-2.15-1.4-.76-.3-1.64-.5-2.92-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84c-3.4 0-6.16 2.76-6.16 6.16s2.76 6.16 6.16 6.16 6.16-2.76 6.16-6.16-2.76-6.16-6.16-6.16zm0 10.16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
-      </div>
+  </div>
+  <div class="social-footer">
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-1.28.06-2.16.26-2.92.56-.8.31-1.48.73-2.15 1.4-.67.67-1.09 1.35-1.4 2.15-.3.76-.5 1.64-.56 2.92C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.16.56 2.92.31.8.73 1.48 1.4 2.15.67.67 1.35 1.09 2.15 1.4.76.3 1.64.5 2.92.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.16-.26 2.92-.56.8-.31 1.48-.73 2.15-1.4.67-.67 1.09-1.35 1.4-2.15.3-.76.5-1.64.56-2.92.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.16-.56-2.92-.31-.8-.73-1.48-1.4-2.15-.67-.67-1.35-1.09-2.15-1.4-.76-.3-1.64-.5-2.92-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84c-3.4 0-6.16 2.76-6.16 6.16s2.76 6.16 6.16 6.16 6.16-2.76 6.16-6.16-2.76-6.16-6.16-6.16zm0 10.16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
     </div>
   </div>
 
 </div>
 
 <script>
+  // المنتجات مع الكميات لكل مقاس
   const products = [
-    { id: 1, img: "https://placehold.co/600x600/1a1a1a/white?text=Tee+Black", price: "960 EGP", name: "تيشرت أسود" },
-    { id: 2, img: "https://placehold.co/600x600/2c2c2c/white?text=Tee+White", price: "890 EGP", name: "تيشرت أبيض" },
-    { id: 3, img: "https://placehold.co/600x600/3a3a3a/white?text=Tee+Grey", price: "1,050 EGP", name: "تيشرت رمادي" },
-    { id: 4, img: "https://placehold.co/600x600/4a2f2f/white?text=Tee+Brown", price: "1,100 EGP", name: "تيشرت بني" },
-    { id: 5, img: "https://placehold.co/600x600/2f4a2f/white?text=Tee+Green", price: "1,200 EGP", name: "تيشرت أخضر" },
-    { id: 6, img: "https://placehold.co/600x600/2f2f4a/white?text=Tee+Blue", price: "980 EGP", name: "تيشرت أزرق" },
-    { id: 7, img: "https://placehold.co/600x600/4a2f4a/white?text=Tee+Purple", price: "1,150 EGP", name: "تيشرت بنفسجي" },
-    { id: 8, img: "https://placehold.co/600x600/4a4a2f/white?text=Tee+Olive", price: "1,080 EGP", name: "تيشرت زيتوني" }
-  ];
-
-  const alsoLikeProducts = [
-    { name: "BRSRB Long Sleeve - Black", price: "1,026 EGP", img: "https://placehold.co/600x600/111/white?text=LS+Black" },
-    { name: "BRSRB Tee - White", price: "960 EGP", img: "https://placehold.co/600x600/222/white?text=Tee+White" },
-    { name: "BRSRB Classic Cap", price: "850 EGP", img: "https://placehold.co/600x600/333/white?text=Cap" },
-    { name: "BRSRB Hoodie - Black", price: "1,850 EGP", img: "https://placehold.co/600x600/111/white?text=Hoodie" },
-    { name: "BRSRB Pants - Grey", price: "1,185 EGP", img: "https://placehold.co/600x600/444/white?text=Pants" }
+    { id: 1, img: "https://placehold.co/600x600/1a1a1a/white?text=Tee+Black", price: "960 EGP", name: "تيشرت أسود", title: "BLACK TEE", sizes: { M: 3, L: 0, XL: 2 } },
+    { id: 2, img: "https://placehold.co/600x600/2c2c2c/white?text=Tee+White", price: "890 EGP", name: "تيشرت أبيض", title: "WHITE TEE", sizes: { M: 0, L: 5, XL: 1 } },
+    { id: 3, img: "https://placehold.co/600x600/3a3a3a/white?text=Tee+Grey", price: "1,050 EGP", name: "تيشرت رمادي", title: "GREY TEE", sizes: { M: 2, L: 2, XL: 0 } },
+    { id: 4, img: "https://placehold.co/600x600/4a2f2f/white?text=Tee+Brown", price: "1,100 EGP", name: "تيشرت بني", title: "BROWN TEE", sizes: { M: 1, L: 0, XL: 0 } },
+    { id: 5, img: "https://placehold.co/600x600/2f4a2f/white?text=Tee+Green", price: "1,200 EGP", name: "تيشرت أخضر", title: "GREEN TEE", sizes: { M: 4, L: 3, XL: 2 } },
+    { id: 6, img: "https://placehold.co/600x600/2f2f4a/white?text=Tee+Blue", price: "980 EGP", name: "تيشرت أزرق", title: "BLUE TEE", sizes: { M: 0, L: 0, XL: 0 } },
+    { id: 7, img: "https://placehold.co/600x600/4a2f4a/white?text=Tee+Purple", price: "1,150 EGP", name: "تيشرت بنفسجي", title: "PURPLE TEE", sizes: { M: 2, L: 0, XL: 1 } },
+    { id: 8, img: "https://placehold.co/600x600/4a4a2f/white?text=Tee+Olive", price: "1,080 EGP", name: "تيشرت زيتوني", title: "OLIVE TEE", sizes: { M: 0, L: 1, XL: 0 } }
   ];
 
   let currentProductId = 1;
+  let selectedSize = null;
 
+  // ========== إدارة السلة ==========
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateBagCount();
+  }
+
+  function updateBagCount() {
+    const cart = getCart();
+    const bagCountSpan = document.getElementById('bagCount');
+    if (bagCountSpan) bagCountSpan.innerText = cart.length;
+  }
+
+  function addToCart(productTitle, productPrice, size, productId) {
+    const cart = getCart();
+    cart.push({ title: productTitle, price: productPrice, size: size, productId: productId });
+    saveCart(cart);
+    
+    // تقليل الكمية من المخزون
+    const product = products.find(p => p.id === productId);
+    if (product && product.sizes[size] > 0) {
+      product.sizes[size]--;
+    }
+    
+    alert(`Added to bag: ${productTitle} - Size ${size}`);
+  }
+
+  // ========== التنقل بين الصفحات ==========
+  function navigateTo(page, productId = null) {
+    if (page === 'home') {
+      document.getElementById('homeView').style.display = 'block';
+      document.getElementById('productView').style.display = 'none';
+      document.getElementById('cartView').style.display = 'none';
+      history.pushState({ page: 'home' }, '', '#home');
+      renderHomeProducts();
+    } else if (page === 'product') {
+      if (productId) currentProductId = productId;
+      const product = products.find(p => p.id === currentProductId);
+      if (product) {
+        document.getElementById('productTitle').innerHTML = `"${product.title || product.name}" TEE`;
+        document.getElementById('productPrice').innerHTML = product.price;
+        const imgBox = document.getElementById('productImgBox');
+        if (imgBox) {
+          imgBox.style.backgroundImage = `url(${product.img})`;
+          imgBox.style.backgroundSize = 'cover';
+          imgBox.style.backgroundPosition = 'center';
+          imgBox.innerHTML = '';
+        }
+        
+        // التحقق من توفر المنتج (هل يوجد أي مقاس متوفر)
+        const hasStock = Object.values(product.sizes).some(qty => qty > 0);
+        const stockStatus = document.getElementById('stockStatus');
+        const addBtn = document.getElementById('addToBagBtn');
+        
+        if (!hasStock) {
+          stockStatus.className = 'stock-status sold-out';
+          stockStatus.innerHTML = '✕ SOLD OUT';
+          addBtn.classList.add('disabled');
+          addBtn.disabled = true;
+        } else {
+          stockStatus.className = 'stock-status in-stock';
+          stockStatus.innerHTML = '✓ IN STOCK';
+          addBtn.classList.remove('disabled');
+          addBtn.disabled = false;
+        }
+        
+        // تحديث أزرار المقاسات
+        const sizeBtns = document.querySelectorAll('.size-btn');
+        sizeBtns.forEach(btn => {
+          const size = btn.getAttribute('data-size');
+          const qty = product.sizes[size] || 0;
+          if (qty === 0) {
+            btn.classList.add('sold-out');
+            btn.disabled = true;
+          } else {
+            btn.classList.remove('sold-out');
+            btn.disabled = false;
+          }
+        });
+      }
+      resetSizeSelection();
+      document.getElementById('homeView').style.display = 'none';
+      document.getElementById('productView').style.display = 'block';
+      document.getElementById('cartView').style.display = 'none';
+      history.pushState({ page: 'product', id: currentProductId }, '', `#product?id=${currentProductId}`);
+    } else if (page === 'cart') {
+      document.getElementById('homeView').style.display = 'none';
+      document.getElementById('productView').style.display = 'none';
+      document.getElementById('cartView').style.display = 'block';
+      history.pushState({ page: 'cart' }, '', '#cart');
+      renderCart();
+    }
+  }
+
+  // ========== عرض المنتجات في الرئيسية ==========
   function renderHomeProducts() {
     const grid = document.getElementById('productsGrid');
     grid.innerHTML = '';
     products.forEach(product => {
+      const hasStock = Object.values(product.sizes).some(qty => qty > 0);
       const card = document.createElement('div');
-      card.className = 'product-card';
-      card.onclick = () => showProduct(product.id);
+      card.className = 'product-card' + (hasStock ? '' : ' sold-out');
+      card.onclick = () => navigateTo('product', product.id);
       card.innerHTML = `
         <div class="product-image">
           <img src="${product.img}" alt="${product.name}" onerror="this.src='https://placehold.co/600x600?text=Image'">
         </div>
-        <div class="product-price-badge">${product.price}</div>
+        <div class="product-price">${product.price}</div>
       `;
       grid.appendChild(card);
     });
   }
 
-  function renderAlsoLike() {
-    const container = document.getElementById('alsoLikeGrid');
-    if (!container) return;
-    container.innerHTML = '';
-    alsoLikeProducts.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'like-item';
-      div.onclick = () => { showHome(); };
-      div.innerHTML = `
-        <div class="like-image"><img src="${item.img}" onerror="this.src='https://placehold.co/600x600?text=BRSRB'"></div>
-        <div class="like-title">${item.name}</div>
-        <div class="like-price">${item.price}</div>
+  // ========== عرض السلة مع نموذج البيانات ==========
+  function renderCart() {
+    const cart = getCart();
+    const container = document.getElementById('cartContainer');
+    
+    if (cart.length === 0) {
+      container.innerHTML = '<div class="empty-cart">سلة المشتريات فارغة</div>';
+      return;
+    }
+
+    let total = 0;
+    let html = `
+      <div class="cart-items">
+        <div class="cart-item cart-header">
+          <span>المنتج</span>
+          <span>السعر</span>
+          <span>المقاس</span>
+          <span></span>
+        </div>
+    `;
+
+    cart.forEach((item, index) => {
+      const priceNum = parseInt(item.price.replace(/[^0-9]/g, ''));
+      total += priceNum;
+      html += `
+        <div class="cart-item">
+          <span>${item.title}</span>
+          <span>${item.price}</span>
+          <span>${item.size}</span>
+          <button class="remove-btn" data-index="${index}">✕</button>
+        </div>
       `;
-      container.appendChild(div);
+    });
+
+    html += `
+      </div>
+      <div class="cart-total">
+        الإجمالي: ${total.toLocaleString()} EGP
+      </div>
+      
+      <div class="checkout-form">
+        <h3>معلومات التوصيل</h3>
+        <div class="form-group">
+          <label>الاسم كاملاً</label>
+          <input type="text" id="fullName" placeholder="أدخل اسمك بالكامل">
+        </div>
+        <div class="form-group">
+          <label>البريد الإلكتروني</label>
+          <input type="email" id="email" placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label>رقم التليفون</label>
+          <input type="tel" id="phone" placeholder="01234567890">
+        </div>
+        <div class="form-group">
+          <label>العنوان بالتفصيل</label>
+          <textarea id="address" rows="3" placeholder="البلد - المدينة - الحي - الشارع - رقم المبنى - الطابق - رقم الشقة"></textarea>
+        </div>
+        <button class="checkout-submit" id="confirmOrderBtn">تأكيد الطلب</button>
+      </div>
+    `;
+    
+    container.innerHTML = html;
+
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const index = parseInt(btn.getAttribute('data-index'));
+        const cartNew = getCart();
+        cartNew.splice(index, 1);
+        saveCart(cartNew);
+        renderCart();
+      });
+    });
+
+    document.getElementById('confirmOrderBtn')?.addEventListener('click', () => {
+      const fullName = document.getElementById('fullName')?.value.trim();
+      const email = document.getElementById('email')?.value.trim();
+      const phone = document.getElementById('phone')?.value.trim();
+      const address = document.getElementById('address')?.value.trim();
+      
+      if (!fullName || !email || !phone || !address) {
+        alert('الرجاء ملء جميع البيانات');
+        return;
+      }
+      
+      if (!email.includes('@')) {
+        alert('الرجاء إدخال بريد إلكتروني صحيح');
+        return;
+      }
+      
+      if (!/^01[0-9]{9}$/.test(phone)) {
+        alert('الرجاء إدخال رقم تليفون مصري صحيح (11 رقم يبدأ بـ 01)');
+        return;
+      }
+      
+      alert(`شكراً ${fullName}! تم استلام طلبك وسيتم التواصل معك قريباً.\n\nالمنتجات: ${cart.length} منتج\nالإجمالي: ${total} EGP\nالعنوان: ${address}`);
+      
+      // تفريغ السلة بعد تأكيد الطلب
+      localStorage.removeItem('cart');
+      updateBagCount();
+      renderCart();
     });
   }
 
-  function showProduct(productId) {
-    currentProductId = productId;
-    const product = products.find(p => p.id === productId);
-    if (product) {
-      document.getElementById('productTitle').innerHTML = `"${product.name}" TEE`;
-      document.getElementById('productPrice').innerHTML = product.price;
-      const imgBox = document.getElementById('productImgBox');
-      if (imgBox) {
-        imgBox.style.backgroundImage = `url(${product.img})`;
-        imgBox.style.backgroundSize = 'cover';
-        imgBox.style.backgroundPosition = 'center';
-        imgBox.innerHTML = '';
-      }
-    }
-    document.getElementById('homeView').style.display = 'none';
-    document.getElementById('productView').style.display = 'block';
-    document.getElementById('productView').classList.add('active');
-    resetSizeSelection();
-  }
-
-  function showHome() {
-    document.getElementById('homeView').style.display = 'block';
-    document.getElementById('productView').style.display = 'none';
-    resetSizeSelection();
-  }
-
+  // ========== تفاعلات صفحة المنتج ==========
   function resetSizeSelection() {
-    const btns = document.querySelectorAll('#productView .size-btn');
-    btns.forEach(btn => btn.classList.remove('selected'));
-    window.selectedSize = null;
+    const btns = document.querySelectorAll('.size-btn');
+    btns.forEach(btn => {
+      if (!btn.disabled) btn.classList.remove('selected');
+    });
+    selectedSize = null;
     const msg = document.getElementById('unlockMsg');
     if (msg) msg.textContent = 'SELECT OPTIONS TO UNLOCK PURCHASE';
   }
 
   function initProductInteractions() {
-    const sizeBtns = document.querySelectorAll('#productView .size-btn');
+    const sizeBtns = document.querySelectorAll('.size-btn');
     const addBtn = document.getElementById('addToBagBtn');
     const unlockMsg = document.getElementById('unlockMsg');
 
     sizeBtns.forEach(btn => {
       btn.addEventListener('click', () => {
+        if (btn.disabled) return;
         sizeBtns.forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
-        window.selectedSize = btn.getAttribute('data-size');
+        selectedSize = btn.getAttribute('data-size');
         unlockMsg.textContent = '✓ Size selected — ready to add to bag';
         setTimeout(() => {
           if (unlockMsg) unlockMsg.textContent = 'SELECT OPTIONS TO UNLOCK PURCHASE';
@@ -652,22 +887,68 @@
 
     if (addBtn) {
       addBtn.addEventListener('click', () => {
-        if (!window.selectedSize) {
+        if (addBtn.disabled) {
+          alert('This product is sold out');
+          return;
+        }
+        if (!selectedSize) {
           unlockMsg.textContent = '⚠️ Please select a size first!';
           setTimeout(() => {
             if (unlockMsg) unlockMsg.textContent = 'SELECT OPTIONS TO UNLOCK PURCHASE';
           }, 2000);
           return;
         }
-        alert(`Added to bag: ${document.getElementById('productTitle').innerHTML} - Size ${window.selectedSize}`);
+        
+        const product = products.find(p => p.id === currentProductId);
+        if (product && product.sizes[selectedSize] === 0) {
+          alert('This size is sold out');
+          return;
+        }
+        
+        const productTitle = document.getElementById('productTitle').innerHTML;
+        const productPrice = document.getElementById('productPrice').innerHTML;
+        addToCart(productTitle, productPrice, selectedSize, currentProductId);
+        
+        // إعادة تحميل صفحة المنتج لتحديث المخزون
+        navigateTo('product', currentProductId);
       });
     }
   }
 
+  // ========== التعامل مع الرابط عند التحميل ==========
+  function handleInitialRoute() {
+    const hash = window.location.hash;
+    if (hash.includes('product')) {
+      const match = hash.match(/id=(\d+)/);
+      const id = match ? parseInt(match[1]) : 1;
+      navigateTo('product', id);
+    } else if (hash.includes('cart')) {
+      navigateTo('cart');
+    } else {
+      navigateTo('home');
+    }
+  }
+
+  // ========== التعامل مع زرار الرجوع ==========
+  window.onpopstate = function(event) {
+    if (event.state) {
+      if (event.state.page === 'home') {
+        navigateTo('home');
+      } else if (event.state.page === 'product') {
+        navigateTo('product', event.state.id || 1);
+      } else if (event.state.page === 'cart') {
+        navigateTo('cart');
+      }
+    } else {
+      handleInitialRoute();
+    }
+  };
+
+  // ========== التشغيل ==========
   renderHomeProducts();
-  renderAlsoLike();
   initProductInteractions();
-  showHome();
+  updateBagCount();
+  handleInitialRoute();
 </script>
 </body>
 </html>
