@@ -1,1267 +1,673 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>ZENITH | Wear the Summit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-        input, textarea, select {
-            user-select: text;
-            -webkit-user-select: text;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            line-height: 1.5;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            flex-wrap: wrap;
-            gap: 1rem;
-            position: sticky;
-            top: 0;
-            background: #000000;
-            z-index: 100;
-        }
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .logo-img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 0.3rem;
-        }
-        .logo-area h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff, #c9a03d);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .logo-slogan {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            color: #c9a03d;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-        .nav-links a:hover {
-            color: #c9a03d;
-        }
-        .nav-icons {
-            display: flex;
-            gap: 1.2rem;
-            align-items: center;
-        }
-        .nav-icons i {
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.2s;
-            position: relative;
-        }
-        .nav-icons i:hover {
-            color: #c9a03d;
-        }
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: #c9a03d;
-            color: black;
-            font-size: 0.6rem;
-            font-weight: bold;
-            padding: 0.1rem 0.3rem;
-            border-radius: 50%;
-            min-width: 16px;
-            text-align: center;
-        }
-        .hero {
-            text-align: center;
-            padding: 4rem 1rem;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 1;
-        }
-        .hero > * {
-            position: relative;
-            z-index: 2;
-        }
-        .hero h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            color: #c9a03d;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin: 1rem 0;
-            background: linear-gradient(135deg, #fff, #c9a03d);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .hero .tagline {
-            font-size: 1rem;
-            color: #ddd;
-            margin-bottom: 2rem;
-        }
-        .btn-shop {
-            background: #c9a03d;
-            color: black;
-            border: none;
-            padding: 0.8rem 2rem;
-            font-weight: 700;
-            cursor: pointer;
-            border-radius: 30px;
-            display: inline-block;
-            transition: 0.3s;
-        }
-        .btn-shop:hover {
-            background: #b89030;
-            transform: scale(1.02);
-        }
-        .products-section {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 1.5rem;
-        }
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            border-left: 4px solid #c9a03d;
-            padding-left: 1rem;
-            color: #c9a03d;
-        }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .product-card {
-            background: #111;
-            border-radius: 16px;
-            overflow: hidden;
-            transition: 0.25s;
-            border: 1px solid #222;
-            cursor: pointer;
-            position: relative;
-        }
-        .product-card.sold-out {
-            opacity: 0.6;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: #c9a03d;
-        }
-        .sold-out-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff4444;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            z-index: 2;
-        }
-        .discount-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #c9a03d;
-            color: black;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            z-index: 2;
-        }
-        .product-img {
-            background: transparent;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .product-info {
-            padding: 1.2rem;
-        }
-        .product-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        .product-price {
-            margin: 0.5rem 0;
-            font-weight: 600;
-        }
-        .original-price {
-            color: #888;
-            text-decoration: line-through;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-        }
-        .sale-price {
-            color: #c9a03d;
-            font-size: 1rem;
-        }
-        .btn-add {
-            background: transparent;
-            border: 1px solid #c9a03d;
-            color: #c9a03d;
-            padding: 0.5rem;
-            border-radius: 30px;
-            width: 100%;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-add:hover {
-            background: #c9a03d;
-            color: black;
-        }
-        .btn-add.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            border-color: #666;
-            color: #666;
-        }
-        .product-page {
-            display: none;
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-            gap: 3rem;
-        }
-        .product-page.active {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .product-gallery {
-            flex: 1;
-            min-width: 300px;
-        }
-        .main-image {
-            width: 100%;
-            height: 450px;
-            background: transparent;
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .main-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .thumbnail-list {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            background: transparent;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid #333;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .thumbnail.active {
-            border-color: #c9a03d;
-        }
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .product-details {
-            flex: 1;
-            min-width: 300px;
-        }
-        .product-details h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .price-section {
-            margin-bottom: 1rem;
-        }
-        .price-section .original-price {
-            font-size: 1.2rem;
-        }
-        .price-section .sale-price {
-            font-size: 1.8rem;
-        }
-        .description {
-            color: #aaa;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        .size-section {
-            margin-bottom: 1.5rem;
-        }
-        .size-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        .size-guide-btn {
-            background: transparent;
-            border: 1px solid #c9a03d;
-            color: #c9a03d;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-        .size-options {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-        .size-option {
-            width: 55px;
-            padding: 0.5rem;
-            text-align: center;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .size-option:hover:not(.sold-out-size) {
-            border-color: #c9a03d;
-            background: #c9a03d;
-            color: black;
-        }
-        .size-option.selected {
-            border-color: #c9a03d;
-            background: #c9a03d;
-            color: black;
-        }
-        .size-option.sold-out-size {
-            opacity: 0.5;
-            cursor: not-allowed;
-            text-decoration: line-through;
-            background: #330000;
-            border-color: #ff4444;
-            color: #ff8888;
-        }
-        .quantity-section {
-            margin-bottom: 1.5rem;
-        }
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .quantity-btn {
-            width: 35px;
-            height: 35px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        .quantity-input {
-            width: 60px;
-            text-align: center;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: white;
-            padding: 0.5rem;
-            border-radius: 8px;
-        }
-        .add-to-cart-btn {
-            width: 100%;
-            padding: 1rem;
-            background: #c9a03d;
-            color: black;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-        .add-to-cart-btn.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background: #444;
-            color: #999;
-        }
-        .back-btn {
-            background: transparent;
-            border: 1px solid #c9a03d;
-            color: #c9a03d;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-        .size-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        .size-modal-content {
-            background: #111;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            padding: 2rem;
-            border: 1px solid #c9a03d;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        .size-modal-content h3 {
-            color: #c9a03d;
-            margin-bottom: 1rem;
-        }
-        .size-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-        .size-table th, .size-table td {
-            border: 1px solid #333;
-            padding: 0.5rem;
-            text-align: center;
-        }
-        .size-table th {
-            background: #1a1a1a;
-            color: #c9a03d;
-        }
-        .size-guide-img {
-            width: 100%;
-            margin-top: 1rem;
-            border-radius: 12px;
-        }
-        .cart-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: #111;
-            z-index: 1000;
-            padding: 2rem;
-            border-left: 2px solid #c9a03d;
-            overflow-y: auto;
-        }
-        .cart-close {
-            float: right;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #c9a03d;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #333;
-        }
-        .cart-total {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px solid #c9a03d;
-            font-weight: bold;
-        }
-        .remove-item {
-            color: #ff4444;
-            cursor: pointer;
-            margin-left: 1rem;
-        }
-        .checkout-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        .checkout-content {
-            background: #111;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            padding: 2rem;
-            border: 1px solid #c9a03d;
-        }
-        .checkout-content h3 {
-            color: #c9a03d;
-            margin-bottom: 1rem;
-        }
-        .checkout-content input, .checkout-content textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin: 0.5rem 0;
-            background: #222;
-            border: 1px solid #c9a03d;
-            color: white;
-            border-radius: 10px;
-        }
-        .checkout-content textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        footer {
-            border-top: 1px solid #1a1a1a;
-            padding: 2rem;
-            text-align: center;
-            color: #777;
-            font-size: 0.8rem;
-        }
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .product-page {
-                flex-direction: column;
-            }
-            .product-img {
-                height: 220px;
-            }
-            .main-image {
-                height: 300px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>براسرب | المتجر</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #ffffff;
+      font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .bag {
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: #f3f3f3;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+    }
+
+    /* زر الرجوع */
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #555;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      transition: background 0.2s;
+    }
+
+    .back-home-btn:hover {
+      background: #f0f0f0;
+    }
+
+    .home-view {
+      display: block;
+    }
+
+    .home-view.hidden {
+      display: none;
+    }
+
+    .main-title {
+      font-size: 3rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .bag-center {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-card {
+      background: #fafafa;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #eee;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: #eaeaea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-price-badge {
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: white;
+      border-top: 1px solid #eee;
+      color: #1a1a1a;
+    }
+
+    .product-view {
+      display: none;
+    }
+
+    .product-view.active {
+      display: block;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .product-img-box {
+      background: #f7f7f7;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1 / 1;
+      border: 1px solid #efefef;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .arabic-graphic {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .brand-sub {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #888;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .arabic-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.75rem;
+    }
+
+    .stock-status {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #2c7a2f;
+      background: #e9f5e9;
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .size-label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .size-buttons {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .size-btn {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 0.5rem 1.3rem;
+      font-weight: 600;
+      border-radius: 40px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .size-btn.selected {
+      background: #000;
+      color: white;
+      border-color: #000;
+    }
+
+    .add-to-bag {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 0.9rem;
+      font-weight: 600;
+      border-radius: 48px;
+      width: 100%;
+      cursor: pointer;
+      margin: 0.5rem 0;
+    }
+
+    .unlock-message {
+      font-size: 0.7rem;
+      color: #888;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .features {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #555;
+      border-top: 1px solid #ececec;
+      padding-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .desc-section {
+      margin: 1rem 0;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #2f2f2f;
+      border-top: 1px solid #ececec;
+      padding-top: 1rem;
+    }
+
+    .size-chart {
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-decoration: underline;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+
+    .shipping-note {
+      font-size: 0.7rem;
+      color: #666;
+      margin: 0.5rem 0;
+    }
+
+    .also-like {
+      margin-top: 2.5rem;
+      border-top: 1px solid #ebebeb;
+      padding-top: 1.5rem;
+    }
+
+    .also-like h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .product-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.8rem;
+    }
+
+    .like-item {
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .like-image {
+      background: #f3f3f3;
+      border-radius: 16px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
+    }
+
+    .like-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .like-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    .like-price {
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e5e5e5;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #888;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #555;
+      cursor: pointer;
+    }
+
+    .social-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-bottom: 1rem;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      opacity: 0.7;
+    }
+
+    .social-icons a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .social-icons svg {
+      width: 22px;
+      height: 22px;
+      fill: #1a1a1a;
+    }
+
+    @media (max-width: 900px) {
+      .app {
+        padding: 1rem;
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .product-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
+      .main-title {
+        font-size: 2.2rem;
+      }
+      .arabic-graphic {
+        font-size: 2.2rem;
+      }
+      .product-title {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .size-buttons {
+        gap: 0.5rem;
+      }
+      .size-btn {
+        padding: 0.4rem 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
+<div class="app">
 
-<div style="background:#222;color:#c9a03d;text-align:center;padding:0.7rem;font-size:0.75rem;">
-    ⚡ ZENITH | Wear the Summit
-</div>
-
-<nav class="navbar">
-    <div class="logo-area">
-        <img src="https://placehold.co/400x400/c9a03d/black?text=Z" alt="ZENITH" class="logo-img" id="logoImg">
-        <h1>ZENITH</h1>
-        <p class="logo-slogan">WEAR THE SUMMIT</p>
+  <div class="header">
+    <div class="logo">
+      <h1 onclick="showHome()">براسرب</h1>
     </div>
-    <ul class="nav-links">
-        <li><a class="nav-link" data-page="home">HOME</a></li>
-        <li><a class="nav-link" data-page="shop">SHOP</a></li>
-        <li><a class="nav-link" data-page="collections">COLLECTIONS</a></li>
-    </ul>
-    <div class="nav-icons">
-        <i class="fas fa-search" id="searchIcon"></i>
-        <i class="fas fa-user" id="userIcon"></i>
-        <i class="fas fa-shopping-bag" id="cartIcon">
-            <span class="cart-count" id="cartCount">0</span>
-        </i>
-    </div>
-</nav>
+    <div class="bag">🛒 Bag 0</div>
+  </div>
 
-<section class="hero" id="heroSection" style="background-image: url('https://placehold.co/1920x1080/1a1a2e/c9a03d?text=ZENITH+BG'); background-size: cover; background-position: center;">
-    <h2 id="heroSubText">RISE ABOVE. STAND OUT.</h2>
-    <h1 id="heroMainText">WEAR THE SUMMIT</h1>
-    <p class="tagline" id="heroTagText">ZENITH Premium Collection — Heavyweight, Luxury, Defined</p>
-    <button class="btn-shop" id="shopNowBtn">SHOP NOW →</button>
-</section>
-
-<section class="products-section" id="productsSection">
-    <div class="section-title">SUMMIT DROP</div>
+  <!-- ========== الصفحة الرئيسية ========== -->
+  <div id="homeView" class="home-view">
+    <div class="main-title">براسرب</div>
+    <div class="bag-center"><div class="bag">🛒 Bag 0</div></div>
     <div class="products-grid" id="productsGrid"></div>
-</section>
-
-<div class="product-page" id="productPage">
-    <div style="width:100%;">
-        <button class="back-btn" id="backToShopBtn"><i class="fas fa-arrow-left"></i> Back to Shop</button>
+    <div class="footer">
+      <div>© 2026, Barraserb.</div>
+      <div class="footer-links">
+        <a href="#" onclick="showHome(); return false;">الرئيسية</a>
+        <a href="#">About</a>
+        <a href="#">Returns & Refunds</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact</a>
+      </div>
     </div>
-    <div class="product-gallery" id="productGallery"></div>
-    <div class="product-details" id="productDetails"></div>
-</div>
-
-<footer>
-    <p>© 2025 ZENITH — Wear the Summit. Rise Above. Stand Out.</p>
-</footer>
-
-<div class="cart-modal" id="cartModal">
-    <span class="cart-close" onclick="closeCartModal()">&times;</span>
-    <h3><i class="fas fa-shopping-bag"></i> Your Cart</h3>
-    <div id="cartItems"></div>
-    <div class="cart-total" id="cartTotal">Total: EGP 0</div>
-    <button class="btn-shop" style="width:100%; margin-top:1rem;" onclick="openCheckoutModal()">Proceed to Checkout →</button>
-</div>
-
-<div class="size-modal" id="sizeModal">
-    <div class="size-modal-content">
-        <span class="close-modal" style="float:right; font-size:1.5rem; cursor:pointer;" onclick="closeSizeModal()">&times;</span>
-        <h3><i class="fas fa-ruler"></i> Size Guide</h3>
-        <table class="size-table">
-            <thead>
-                <tr><th>Size</th><th>Chest (cm)</th><th>Length (cm)</th><th>Shoulder (cm)</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>S</td><td>91-96</td><td>68</td><td>45</td></tr>
-                <tr><td>M</td><td>96-101</td><td>70</td><td>47</td></tr>
-                <tr><td>L</td><td>101-106</td><td>72</td><td>49</td></tr>
-                <tr><td>XL</td><td>106-111</td><td>74</td><td>51</td></tr>
-                <tr><td>XXL</td><td>111-116</td><td>76</td><td>53</td></tr>
-            </tbody>
-        </table>
-        <img src="https://placehold.co/400x300/333/c9a03d?text=Size+Guide+Image" alt="Size Guide" class="size-guide-img" id="sizeGuideImg">
-        <p style="font-size:0.7rem; color:#888; margin-top:1rem;">Measurements are in centimeters.</p>
+    <div class="social-footer">
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-1.28.06-2.16.26-2.92.56-.8.31-1.48.73-2.15 1.4-.67.67-1.09 1.35-1.4 2.15-.3.76-.5 1.64-.56 2.92C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.16.56 2.92.31.8.73 1.48 1.4 2.15.67.67 1.35 1.09 2.15 1.4.76.3 1.64.5 2.92.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.16-.26 2.92-.56.8-.31 1.48-.73 2.15-1.4.67-.67 1.09-1.35 1.4-2.15.3-.76.5-1.64.56-2.92.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.16-.56-2.92-.31-.8-.73-1.48-1.4-2.15-.67-.67-1.35-1.09-2.15-1.4-.76-.3-1.64-.5-2.92-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84c-3.4 0-6.16 2.76-6.16 6.16s2.76 6.16 6.16 6.16 6.16-2.76 6.16-6.16-2.76-6.16-6.16-6.16zm0 10.16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="checkout-modal" id="checkoutModal">
-    <div class="checkout-content">
-        <span class="close-modal" style="float:right; font-size:1.5rem; cursor:pointer;" onclick="closeCheckoutModal()">&times;</span>
-        <h3><i class="fas fa-truck"></i> Order Details</h3>
-        <input type="text" id="customerName" placeholder="Full Name *">
-        <input type="tel" id="customerPhone" placeholder="Phone Number *">
-        <input type="text" id="customerEmail" placeholder="Email (optional)">
-        <textarea id="customerAddress" placeholder="Full Address (Street, Building, Apartment, City, Governorate) *"></textarea>
-        <textarea id="orderNotes" placeholder="Notes (special instructions, gate number, etc.)"></textarea>
-        <button class="btn-shop" id="sendOrderBtn" style="width:100%; margin-top:1rem;">Confirm Order →</button>
+  <!-- ========== صفحة المنتج ========== -->
+  <div id="productView" class="product-view">
+    <!-- زر الرجوع -->
+    <button class="back-home-btn" onclick="showHome()">← الرئيسية</button>
+
+    <div class="product-grid">
+      <div class="product-img-box" id="productImgBox">
+        <div class="arabic-graphic">أُوْجِيهَ</div>
+      </div>
+      <div class="product-info">
+        <div class="brand-sub">BRSRB</div>
+        <div class="product-title" id="productTitle">"الاولوية القصوى" TEE - BLACK</div>
+        <div class="arabic-title">أُوْجِيهَ</div>
+        <div class="stock-status">✓ IN STOCK</div>
+        <div class="price" id="productPrice">960 EGP</div>
+
+        <div class="size-label">SIZE</div>
+        <div class="size-buttons">
+          <button class="size-btn" data-size="M">M</button>
+          <button class="size-btn" data-size="L">L</button>
+          <button class="size-btn" data-size="XL">XL</button>
+        </div>
+
+        <button class="add-to-bag" id="addToBagBtn">ADD TO BAG</button>
+        <div class="unlock-message" id="unlockMsg">SELECT OPTIONS TO UNLOCK PURCHASE</div>
+
+        <div class="features">
+          <span>🚚 FAST SHIPPING</span>
+          <span>🔄 EASY RETURNS</span>
+          <span>🔒 SECURE CHECKOUT</span>
+        </div>
+
+        <div class="desc-section">
+          A Bold Graphic Piece That Merges Arabic Typography With Modern Streetwear. This Black Short-Sleeve Tee Features The Phrase "الاولوية القصوى" (Top Priority) Formed Through A Detailed Typographic Pattern, Creating A Striking Visual Statement While Maintaining A Clean And Minimal Aesthetic.<br><br>
+          Designed with A Relaxed Fit And Soft Fabric, It's Made For Everyday Wear While Standing Out Through Its Strong Graphic Identity.
+        </div>
+
+        <div class="size-chart">📏 Size Chart - T-Shirts</div>
+        <div class="shipping-note">🚚 Shipping: Orders Are Delivered Within 1-3 Working Days.</div>
+      </div>
     </div>
+
+    <div class="also-like">
+      <h3>YOU MAY ALSO LIKE</h3>
+      <div class="product-row" id="alsoLikeGrid"></div>
+    </div>
+
+    <div class="footer">
+      <div>© 2026, Barraserb.</div>
+      <div class="footer-links">
+        <a href="#" onclick="showHome(); return false;">الرئيسية</a>
+        <a href="#">About</a>
+        <a href="#">Returns & Refunds</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="social-footer">
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07c-1.28.06-2.16.26-2.92.56-.8.31-1.48.73-2.15 1.4-.67.67-1.09 1.35-1.4 2.15-.3.76-.5 1.64-.56 2.92C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.16.56 2.92.31.8.73 1.48 1.4 2.15.67.67 1.35 1.09 2.15 1.4.76.3 1.64.5 2.92.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.16-.26 2.92-.56.8-.31 1.48-.73 2.15-1.4.67-.67 1.09-1.35 1.4-2.15.3-.76.5-1.64.56-2.92.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.16-.56-2.92-.31-.8-.73-1.48-1.4-2.15-.67-.67-1.35-1.09-2.15-1.4-.76-.3-1.64-.5-2.92-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84c-3.4 0-6.16 2.76-6.16 6.16s2.76 6.16 6.16 6.16 6.16-2.76 6.16-6.16-2.76-6.16-6.16-6.16zm0 10.16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg></a>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
-// ============================================================ */
-/*                     بيانات المنتجات                         */
-/* ============================================================ */
-const products = [
-    { 
-        id: 1, 
-        name: "PEAK JACKET", 
-        originalPrice: 3200,
-        salePrice: 2199,
-        mainImg: "https://placehold.co/600x800/333/c9a03d?text=PEAK+JACKET+1",
-        images: [
-            "https://placehold.co/600x800/333/c9a03d?text=PEAK+JACKET+1",
-            "https://placehold.co/600x800/444/c9a03d?text=PEAK+JACKET+2",
-            "https://placehold.co/600x800/555/c9a03d?text=PEAK+JACKET+3"
-        ],
-        desc: "Premium peak jacket, heavy weight, perfect for cold weather.",
-        sizesAvailable: { S: true, M: true, L: true, XL: false, XXL: true },
-        isSoldOut: false
-    },
-    { 
-        id: 2, 
-        name: "SUMMIT HOODIE", 
-        originalPrice: 2600,
-        salePrice: 1899,
-        mainImg: "https://placehold.co/600x800/333/c9a03d?text=SUMMIT+HOODIE+1",
-        images: [
-            "https://placehold.co/600x800/333/c9a03d?text=SUMMIT+HOODIE+1",
-            "https://placehold.co/600x800/444/c9a03d?text=SUMMIT+HOODIE+2",
-            "https://placehold.co/600x800/555/c9a03d?text=SUMMIT+HOODIE+3"
-        ],
-        desc: "Oversized summit hoodie, premium cotton blend, feels luxurious.",
-        sizesAvailable: { S: true, M: true, L: true, XL: true, XXL: false },
-        isSoldOut: false
-    },
-    { 
-        id: 3, 
-        name: "ZENITH CAP", 
-        originalPrice: 899,
-        salePrice: 599,
-        mainImg: "https://placehold.co/600x800/333/c9a03d?text=ZENITH+CAP+1",
-        images: [
-            "https://placehold.co/600x800/333/c9a03d?text=ZENITH+CAP+1",
-            "https://placehold.co/600x800/444/c9a03d?text=ZENITH+CAP+2",
-            "https://placehold.co/600x800/555/c9a03d?text=ZENITH+CAP+3"
-        ],
-        desc: "Structured zenith cap, embroidered logo, premium quality.",
-        sizesAvailable: { S: true, M: true, L: false, XL: false, XXL: false },
-        isSoldOut: false
-    },
-    { 
-        id: 4, 
-        name: "ASCENT TEE", 
-        originalPrice: 1200,
-        salePrice: 799,
-        mainImg: "https://placehold.co/600x800/333/c9a03d?text=ASCENT+TEE+1",
-        images: [
-            "https://placehold.co/600x800/333/c9a03d?text=ASCENT+TEE+1",
-            "https://placehold.co/600x800/444/c9a03d?text=ASCENT+TEE+2",
-            "https://placehold.co/600x800/555/c9a03d?text=ASCENT+TEE+3"
-        ],
-        desc: "Comfortable ascent tee, perfect for everyday wear.",
-        sizesAvailable: { S: false, M: true, L: true, XL: true, XXL: true },
-        isSoldOut: false
-    }
-];
+  const products = [
+    { id: 1, img: "https://placehold.co/600x600/1a1a1a/white?text=Tee+Black", price: "960 EGP", name: "تيشرت أسود" },
+    { id: 2, img: "https://placehold.co/600x600/2c2c2c/white?text=Tee+White", price: "890 EGP", name: "تيشرت أبيض" },
+    { id: 3, img: "https://placehold.co/600x600/3a3a3a/white?text=Tee+Grey", price: "1,050 EGP", name: "تيشرت رمادي" },
+    { id: 4, img: "https://placehold.co/600x600/4a2f2f/white?text=Tee+Brown", price: "1,100 EGP", name: "تيشرت بني" },
+    { id: 5, img: "https://placehold.co/600x600/2f4a2f/white?text=Tee+Green", price: "1,200 EGP", name: "تيشرت أخضر" },
+    { id: 6, img: "https://placehold.co/600x600/2f2f4a/white?text=Tee+Blue", price: "980 EGP", name: "تيشرت أزرق" },
+    { id: 7, img: "https://placehold.co/600x600/4a2f4a/white?text=Tee+Purple", price: "1,150 EGP", name: "تيشرت بنفسجي" },
+    { id: 8, img: "https://placehold.co/600x600/4a4a2f/white?text=Tee+Olive", price: "1,080 EGP", name: "تيشرت زيتوني" }
+  ];
 
-let cart = [];
-let currentUser = localStorage.getItem('zenith_user') || null;
-let currentProduct = null;
-let selectedSize = null;
-let quantity = 1;
+  const alsoLikeProducts = [
+    { name: "BRSRB Long Sleeve - Black", price: "1,026 EGP", img: "https://placehold.co/600x600/111/white?text=LS+Black" },
+    { name: "BRSRB Tee - White", price: "960 EGP", img: "https://placehold.co/600x600/222/white?text=Tee+White" },
+    { name: "BRSRB Classic Cap", price: "850 EGP", img: "https://placehold.co/600x600/333/white?text=Cap" },
+    { name: "BRSRB Hoodie - Black", price: "1,850 EGP", img: "https://placehold.co/600x600/111/white?text=Hoodie" },
+    { name: "BRSRB Pants - Grey", price: "1,185 EGP", img: "https://placehold.co/600x600/444/white?text=Pants" }
+  ];
 
-// إيميل الاستلام - غير الإيميل هنا إلى إيميلك
-const STORE_EMAIL = "mostafa3bdo2006@gmail.com";
+  let currentProductId = 1;
 
-function getDiscountPercent(original, sale) {
-    if (original <= sale) return null;
-    return Math.round(((original - sale) / original) * 100);
-}
-
-function loadCart() {
-    const savedCart = localStorage.getItem('zenith_cart');
-    if (savedCart) cart = JSON.parse(savedCart);
-    updateCartUI();
-}
-
-function saveCart() {
-    localStorage.setItem('zenith_cart', JSON.stringify(cart));
-    updateCartUI();
-}
-
-function addToCartFromPage() {
-    if (!selectedSize) {
-        alert('Please select a size');
-        return;
-    }
-    if (currentProduct && currentProduct.sizesAvailable[selectedSize] === false) {
-        alert('Sorry, this size is sold out!');
-        return;
-    }
-    if (currentProduct) {
-        const existing = cart.find(item => item.id === currentProduct.id && item.size === selectedSize);
-        if (existing) {
-            existing.quantity += quantity;
-        } else {
-            cart.push({ 
-                id: currentProduct.id,
-                name: currentProduct.name, 
-                quantity: quantity, 
-                size: selectedSize,
-                price: currentProduct.salePrice,
-                originalPrice: currentProduct.originalPrice,
-                img: currentProduct.mainImg
-            });
-        }
-        saveCart();
-        showToast(`${currentProduct.name} (${selectedSize}) added to cart!`);
-        closeProductPage();
-    }
-}
-
-function removeFromCart(productId, size) {
-    cart = cart.filter(item => !(item.id === productId && item.size === size));
-    saveCart();
-}
-
-function updateQuantityInCart(productId, size, change) {
-    const item = cart.find(item => item.id === productId && item.size === size);
-    if (item) {
-        item.quantity += change;
-        if (item.quantity <= 0) {
-            removeFromCart(productId, size);
-        } else {
-            saveCart();
-        }
-    }
-}
-
-function updateCartUI() {
-    const cartItemsDiv = document.getElementById('cartItems');
-    const cartCountSpan = document.getElementById('cartCount');
-    const cartTotalDiv = document.getElementById('cartTotal');
-    
-    let total = 0;
-    let itemCount = 0;
-    
-    if (cartItemsDiv) {
-        if (cart.length === 0) {
-            cartItemsDiv.innerHTML = '<p style="color:#666; text-align:center;">Your cart is empty</p>';
-        } else {
-            cartItemsDiv.innerHTML = cart.map(item => {
-                const discount = getDiscountPercent(item.originalPrice, item.price);
-                return `
-                    <div class="cart-item">
-                        <div>
-                            <strong>${item.name}</strong><br>
-                            <small>Size: ${item.size}</small><br>
-                            ${discount ? `<small style="color:#c9a03d;">${discount}% OFF</small><br>` : ''}
-                            <small>EGP ${item.price.toLocaleString()}</small>
-                        </div>
-                        <div>
-                            <button onclick="updateQuantityInCart(${item.id}, '${item.size}', -1)" style="background:#333; border:none; color:white; padding:0.2rem 0.5rem; border-radius:5px; cursor:pointer;">-</button>
-                            <span style="margin:0 0.5rem;">${item.quantity}</span>
-                            <button onclick="updateQuantityInCart(${item.id}, '${item.size}', 1)" style="background:#333; border:none; color:white; padding:0.2rem 0.5rem; border-radius:5px; cursor:pointer;">+</button>
-                            <span class="remove-item" onclick="removeFromCart(${item.id}, '${item.size}')"><i class="fas fa-trash"></i></span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-        
-        total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartTotalDiv.innerHTML = `Total: EGP ${total.toLocaleString()}`;
-    }
-    
-    if (cartCountSpan) {
-        cartCountSpan.textContent = itemCount;
-        cartCountSpan.style.display = itemCount > 0 ? 'block' : 'none';
-    }
-}
-
-function displayProducts() {
+  function renderHomeProducts() {
     const grid = document.getElementById('productsGrid');
-    if (!grid) return;
-    
-    grid.innerHTML = products.map(product => {
-        const discount = getDiscountPercent(product.originalPrice, product.salePrice);
-        const hasDiscount = discount !== null;
-        const isSoldOut = product.isSoldOut;
-        
-        return `
-            <div class="product-card ${isSoldOut ? 'sold-out' : ''}" onclick="${!isSoldOut ? `openProductPage(${product.id})` : ''}">
-                ${isSoldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
-                ${hasDiscount && !isSoldOut ? `<div class="discount-badge">-${discount}%</div>` : ''}
-                <div class="product-img">
-                    <img src="${product.mainImg}" alt="${product.name}">
-                </div>
-                <div class="product-info">
-                    <div class="product-title">${product.name}</div>
-                    <div class="product-price">
-                        ${hasDiscount ? `<span class="original-price">EGP ${product.originalPrice.toLocaleString()}</span>` : ''}
-                        <span class="sale-price">EGP ${product.salePrice.toLocaleString()}</span>
-                    </div>
-                    <button class="btn-add ${isSoldOut ? 'disabled' : ''}" onclick="event.stopPropagation(); ${!isSoldOut ? `addToCartSimple(${product.id})` : ''}">
-                        ${isSoldOut ? 'SOLD OUT' : 'ADD TO CART'}
-                    </button>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
+    grid.innerHTML = '';
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.onclick = () => showProduct(product.id);
+      card.innerHTML = `
+        <div class="product-image">
+          <img src="${product.img}" alt="${product.name}" onerror="this.src='https://placehold.co/600x600?text=Image'">
+        </div>
+        <div class="product-price-badge">${product.price}</div>
+      `;
+      grid.appendChild(card);
+    });
+  }
 
-function addToCartSimple(productId) {
+  function renderAlsoLike() {
+    const container = document.getElementById('alsoLikeGrid');
+    if (!container) return;
+    container.innerHTML = '';
+    alsoLikeProducts.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'like-item';
+      div.onclick = () => { showHome(); };
+      div.innerHTML = `
+        <div class="like-image"><img src="${item.img}" onerror="this.src='https://placehold.co/600x600?text=BRSRB'"></div>
+        <div class="like-title">${item.name}</div>
+        <div class="like-price">${item.price}</div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function showProduct(productId) {
+    currentProductId = productId;
     const product = products.find(p => p.id === productId);
-    if (product && !product.isSoldOut) {
-        const availableSize = Object.keys(product.sizesAvailable).find(size => product.sizesAvailable[size] === true);
-        if (availableSize) {
-            const existing = cart.find(item => item.id === productId && item.size === availableSize);
-            if (existing) {
-                existing.quantity++;
-            } else {
-                cart.push({ 
-                    id: product.id,
-                    name: product.name, 
-                    quantity: 1, 
-                    size: availableSize,
-                    price: product.salePrice,
-                    originalPrice: product.originalPrice,
-                    img: product.mainImg
-                });
-            }
-            saveCart();
-            showToast(`${product.name} (${availableSize}) added to cart!`);
-        } else {
-            showToast('Sorry, this product is sold out!');
-        }
+    if (product) {
+      document.getElementById('productTitle').innerHTML = `"${product.name}" TEE`;
+      document.getElementById('productPrice').innerHTML = product.price;
+      const imgBox = document.getElementById('productImgBox');
+      if (imgBox) {
+        imgBox.style.backgroundImage = `url(${product.img})`;
+        imgBox.style.backgroundSize = 'cover';
+        imgBox.style.backgroundPosition = 'center';
+        imgBox.innerHTML = '';
+      }
     }
-}
+    document.getElementById('homeView').style.display = 'none';
+    document.getElementById('productView').style.display = 'block';
+    document.getElementById('productView').classList.add('active');
+    resetSizeSelection();
+  }
 
-function openProductPage(productId) {
-    currentProduct = products.find(p => p.id === productId);
-    selectedSize = null;
-    quantity = 1;
-    
-    if (currentProduct.isSoldOut) {
-        showToast('This product is sold out!');
-        return;
-    }
-    
-    document.getElementById('heroSection').style.display = 'none';
-    document.getElementById('productsSection').style.display = 'none';
-    document.getElementById('productPage').classList.add('active');
-    
-    const discount = getDiscountPercent(currentProduct.originalPrice, currentProduct.salePrice);
-    const hasDiscount = discount !== null;
-    
-    const galleryHtml = `
-        <div class="main-image" id="mainImage">
-            <img src="${currentProduct.mainImg}" alt="${currentProduct.name}">
-        </div>
-        <div class="thumbnail-list" id="thumbnailList">
-            ${currentProduct.images.map((img, index) => `
-                <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this)">
-                    <img src="${img}" alt="Thumbnail ${index + 1}">
-                </div>
-            `).join('')}
-        </div>
-    `;
-    
-    const sizeOptionsHtml = ['S', 'M', 'L', 'XL', 'XXL'].map(size => {
-        const isAvailable = currentProduct.sizesAvailable[size] === true;
-        const isSelected = selectedSize === size;
-        return `
-            <div class="size-option ${isSelected ? 'selected' : ''} ${!isAvailable ? 'sold-out-size' : ''}" 
-                 data-size="${size}" 
-                 onclick="${isAvailable ? `selectSize('${size}')` : ''}">
-                ${size} ${!isAvailable ? '(Sold Out)' : ''}
-            </div>
-        `;
-    }).join('');
-    
-    const detailsHtml = `
-        <h1>${currentProduct.name}</h1>
-        <div class="price-section">
-            ${hasDiscount ? `<span class="original-price">EGP ${currentProduct.originalPrice.toLocaleString()}</span>` : ''}
-            <span class="sale-price">EGP ${currentProduct.salePrice.toLocaleString()}</span>
-            ${hasDiscount ? `<span style="color:#4caf50; margin-left:0.5rem;">-${discount}% OFF</span>` : ''}
-        </div>
-        <div class="description">${currentProduct.desc}</div>
-        <div class="size-section">
-            <div class="size-header">
-                <span>Select Size</span>
-                <button class="size-guide-btn" onclick="openSizeModal()"><i class="fas fa-chart-simple"></i> Size Guide</button>
-            </div>
-            <div class="size-options" id="sizeOptions">
-                ${sizeOptionsHtml}
-            </div>
-        </div>
-        <div class="quantity-section">
-            <div class="quantity-selector">
-                <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-                <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="10" readonly>
-                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-            </div>
-        </div>
-        <button class="add-to-cart-btn" id="addToCartPageBtn">ADD TO CART - EGP ${currentProduct.salePrice.toLocaleString()}</button>
-    `;
-    
-    document.getElementById('productGallery').innerHTML = galleryHtml;
-    document.getElementById('productDetails').innerHTML = detailsHtml;
-    
-    document.getElementById('addToCartPageBtn')?.addEventListener('click', addToCartFromPage);
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+  function showHome() {
+    document.getElementById('homeView').style.display = 'block';
+    document.getElementById('productView').style.display = 'none';
+    resetSizeSelection();
+  }
 
-function changeMainImage(src, element) {
-    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
-    element.classList.add('active');
-    document.querySelector('#mainImage img').src = src;
-}
+  function resetSizeSelection() {
+    const btns = document.querySelectorAll('#productView .size-btn');
+    btns.forEach(btn => btn.classList.remove('selected'));
+    window.selectedSize = null;
+    const msg = document.getElementById('unlockMsg');
+    if (msg) msg.textContent = 'SELECT OPTIONS TO UNLOCK PURCHASE';
+  }
 
-function selectSize(size) {
-    selectedSize = size;
-    document.querySelectorAll('.size-option').forEach(opt => {
-        opt.classList.remove('selected');
-        if (opt.getAttribute('data-size') === size) opt.classList.add('selected');
+  function initProductInteractions() {
+    const sizeBtns = document.querySelectorAll('#productView .size-btn');
+    const addBtn = document.getElementById('addToBagBtn');
+    const unlockMsg = document.getElementById('unlockMsg');
+
+    sizeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizeBtns.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        window.selectedSize = btn.getAttribute('data-size');
+        unlockMsg.textContent = '✓ Size selected — ready to add to bag';
+        setTimeout(() => {
+          if (unlockMsg) unlockMsg.textContent = 'SELECT OPTIONS TO UNLOCK PURCHASE';
+        }, 2000);
+      });
     });
-}
 
-function changeQuantity(delta) {
-    const input = document.getElementById('quantityInput');
-    let newVal = quantity + delta;
-    if (newVal >= 1 && newVal <= 10) {
-        quantity = newVal;
-        input.value = quantity;
-    }
-}
-
-function closeProductPage() {
-    document.getElementById('heroSection').style.display = 'block';
-    document.getElementById('productsSection').style.display = 'block';
-    document.getElementById('productPage').classList.remove('active');
-    currentProduct = null;
-    selectedSize = null;
-    quantity = 1;
-}
-
-function openSizeModal() {
-    document.getElementById('sizeModal').style.display = 'flex';
-}
-
-function closeSizeModal() {
-    document.getElementById('sizeModal').style.display = 'none';
-}
-
-function openCartModal() {
-    document.getElementById('cartModal').style.display = 'block';
-    updateCartUI();
-}
-
-function closeCartModal() {
-    document.getElementById('cartModal').style.display = 'none';
-}
-
-function openCheckoutModal() {
-    if (cart.length === 0) {
-        alert('Your cart is empty!');
-        return;
-    }
-    document.getElementById('checkoutModal').style.display = 'flex';
-}
-
-function closeCheckoutModal() {
-    document.getElementById('checkoutModal').style.display = 'none';
-}
-
-function sendOrderViaEmail() {
-    const name = document.getElementById('customerName').value.trim();
-    const phone = document.getElementById('customerPhone').value.trim();
-    const address = document.getElementById('customerAddress').value.trim();
-    
-    if (!name || !phone || !address) {
-        alert('Please fill all required fields');
-        return false;
-    }
-    
-    const email = document.getElementById('customerEmail').value.trim();
-    const notes = document.getElementById('orderNotes').value.trim();
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
-    // تنسيق المنتجات
-    let productsText = '';
-    cart.forEach((item, index) => {
-        productsText += `${index + 1}. ${item.name} - مقاس: ${item.size} - الكمية: ${item.quantity} - السعر: EGP ${item.price}\n`;
-    });
-    
-    // تنسيق نص الإيميل
-    const subject = `🛍️ طلب جديد من ${name}`;
-    const body = `
-
-                 طلب جديد                    
-                 ━━━━━━━━━━
-
-👤 بيانات العميل:
-━━━━━━━━━━━━━━━━━━
-الاسم: ${name}
-الهاتف: ${phone}
-البريد: ${email || 'غير مدخل'}
-العنوان: ${address}
-ملاحظات: ${notes || 'لا توجد'}
-
-📦 تفاصيل الطلب:
-━━━━━━━━━━━━━━━━━━━━━━
-${productsText}
-💰 الإجمالي: EGP ${total.toLocaleString()}
-
-📅 تاريخ الطلب: ${new Date().toLocaleString('ar-EG')}
-━━━━━━━━━━━━━━━━━━━━━━
-    `;
-    
-    // حفظ الطلب في localStorage
-    const orderDetails = {
-        customer: { name, phone, email, address, notes },
-        items: cart.map(item => ({
-            name: item.name,
-            size: item.size,
-            quantity: item.quantity,
-            price: item.price
-        })),
-        total: total,
-        date: new Date().toLocaleString('ar-EG')
-    };
-    
-    const savedOrders = localStorage.getItem('zenith_orders');
-    const orders = savedOrders ? JSON.parse(savedOrders) : [];
-    orders.push(orderDetails);
-    localStorage.setItem('zenith_orders', JSON.stringify(orders));
-    
-    // فتح بريد العميل مع البيانات جاهزة
-    const mailtoLink = `mailto:${STORE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(mailtoLink, '_blank');
-    
-    return true;
-}
-
-function submitOrder() {
-    const success = sendOrderViaEmail();
-    if (success) {
-        alert(`✅ Order Confirmed!\n\nسيتم فتح بريدك الإلكتروني لإرسال الطلب.\nالرجاء الضغط على إرسال.`);
-        
-        // تنظيف السلة
-        cart = [];
-        saveCart();
-        closeCheckoutModal();
-        closeCartModal();
-        
-        // تنظيف النموذج
-        document.getElementById('customerName').value = '';
-        document.getElementById('customerPhone').value = '';
-        document.getElementById('customerEmail').value = '';
-        document.getElementById('customerAddress').value = '';
-        document.getElementById('orderNotes').value = '';
-    }
-}
-
-function openSearchModal() {
-    const searchTerm = prompt('Search for products:', '');
-    if (searchTerm && searchTerm.trim()) {
-        const filtered = products.filter(p => 
-            p.name.toLowerCase().includes(searchTerm.toLowerCase()) && !p.isSoldOut
-        );
-        if (filtered.length > 0) {
-            showToast(`Found ${filtered.length} product(s)`);
-            openProductPage(filtered[0].id);
-        } else {
-            showToast('No products found');
+    if (addBtn) {
+      addBtn.addEventListener('click', () => {
+        if (!window.selectedSize) {
+          unlockMsg.textContent = '⚠️ Please select a size first!';
+          setTimeout(() => {
+            if (unlockMsg) unlockMsg.textContent = 'SELECT OPTIONS TO UNLOCK PURCHASE';
+          }, 2000);
+          return;
         }
+        alert(`Added to bag: ${document.getElementById('productTitle').innerHTML} - Size ${window.selectedSize}`);
+      });
     }
-}
+  }
 
-function openLoginModal() {
-    const name = prompt('Enter your name to continue:');
-    if (name && name.trim()) {
-        currentUser = name.trim();
-        localStorage.setItem('zenith_user', currentUser);
-        updateUserUI();
-        showToast(`Welcome ${currentUser}!`);
-    }
-}
-
-function logout() {
-    currentUser = null;
-    localStorage.removeItem('zenith_user');
-    updateUserUI();
-    showToast('Logged out');
-}
-
-function updateUserUI() {
-    const userIcon = document.getElementById('userIcon');
-    if (currentUser) {
-        userIcon.innerHTML = `<i class="fas fa-user-check"></i><span style="color:#c9a03d; margin-left:0.3rem; font-size:0.7rem;">${currentUser.split(' ')[0]}</span>`;
-        userIcon.onclick = () => { if (confirm(`Logout ${currentUser}?`)) logout(); };
-    } else {
-        userIcon.innerHTML = `<i class="fas fa-user"></i>`;
-        userIcon.onclick = () => openLoginModal();
-    }
-}
-
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.style.cssText = 'position:fixed;bottom:80px;right:20px;background:#c9a03d;color:black;padding:0.5rem 1rem;border-radius:30px;font-size:0.8rem;z-index:1001;animation:fadeOut 2s ease forwards';
-    toast.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2000);
-}
-
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        const page = e.target.getAttribute('data-page');
-        if (page === 'home') {
-            document.getElementById('heroSection').style.display = 'block';
-            document.getElementById('productsSection').style.display = 'block';
-            document.getElementById('productPage').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else if (page === 'shop') {
-            document.getElementById('heroSection').style.display = 'none';
-            document.getElementById('productsSection').style.display = 'block';
-            document.getElementById('productPage').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else if (page === 'collections') {
-            document.getElementById('heroSection').style.display = 'none';
-            document.getElementById('productsSection').style.display = 'block';
-            document.getElementById('productPage').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    });
-});
-
-document.getElementById('cartIcon')?.addEventListener('click', openCartModal);
-document.getElementById('searchIcon')?.addEventListener('click', openSearchModal);
-document.getElementById('shopNowBtn')?.addEventListener('click', () => {
-    document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
-});
-document.getElementById('backToShopBtn')?.addEventListener('click', closeProductPage);
-document.getElementById('sendOrderBtn')?.addEventListener('click', submitOrder);
-
-window.onclick = (e) => {
-    if (e.target === document.getElementById('cartModal')) closeCartModal();
-    if (e.target === document.getElementById('sizeModal')) closeSizeModal();
-    if (e.target === document.getElementById('checkoutModal')) closeCheckoutModal();
-};
-
-loadCart();
-displayProducts();
-updateUserUI();
-
-const style = document.createElement('style');
-style.textContent = `@keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }`;
-document.head.appendChild(style);
+  renderHomeProducts();
+  renderAlsoLike();
+  initProductInteractions();
+  showHome();
 </script>
 </body>
 </html>
